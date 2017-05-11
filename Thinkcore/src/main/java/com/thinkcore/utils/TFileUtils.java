@@ -444,4 +444,28 @@ public class TFileUtils {
 		}
 		return newFile;
 	}
+
+	public static boolean deleteFileSafely(String filePath) {
+		if (TStringUtils.isEmpty(filePath))
+			return false;
+		File file = new File(filePath);
+		if (file != null && file.exists()) {
+			if (deleteFileSafely(file)) {
+				return  true;
+			} else {
+			}
+		}
+
+		return  false;
+	}
+
+	public static boolean deleteFileSafely(File file) {
+		if (file != null) {
+			String tmpPath = file.getParent() + File.separator + System.currentTimeMillis();
+			File tmp = new File(tmpPath);
+			file.renameTo(tmp);
+			return tmp.delete();
+		}
+		return false;
+	}
 }
