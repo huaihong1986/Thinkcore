@@ -88,14 +88,18 @@ public abstract class TActivity extends Activity {
         super.onDestroy();
     }
 
-    @Override
-    public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
-        return AutoLayoutActivity.onCreateView(this, parent, name, context, attrs);
-    }
+//    @Override
+//    public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
+//        View view = AutoLayoutActivity.onCreateView(name, context, attrs);
+//        if (view != null) return view;
+//        return super.onCreateView(parent, name, context, attrs);
+//    }
 
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
-        return AutoLayoutActivity.onCreateView(this, name, context, attrs);
+        View view = AutoLayoutActivity.onCreateView(name, context, attrs);
+        if (view != null) return view;
+        return super.onCreateView(name, context, attrs);
     }
 
     @Override

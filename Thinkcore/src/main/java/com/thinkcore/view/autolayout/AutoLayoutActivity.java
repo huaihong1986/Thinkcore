@@ -17,7 +17,7 @@ public class AutoLayoutActivity {
     private static final String LAYOUT_RELATIVELAYOUT = "RelativeLayout";
 
 
-    public static View onCreateView(Activity activity, String name, Context context, AttributeSet attrs) {
+    public static View onCreateView(String name, Context context, AttributeSet attrs) {
         View view = null;
         if (name.equals(LAYOUT_FRAMELAYOUT)) {
             view = new AutoFrameLayout(context, attrs);
@@ -31,27 +31,9 @@ public class AutoLayoutActivity {
             view = new AutoRelativeLayout(context, attrs);
         }
 
-        if (view != null) return view;
-
-        return activity.onCreateView(name, context, attrs);
-    }
-
-    public static View onCreateView(Activity activity, View parent, String name, Context context, AttributeSet attrs) {
-        View view = null;
-        if (name.equals(LAYOUT_FRAMELAYOUT)) {
-            view = new AutoFrameLayout(context, attrs);
-        }
-
-        if (name.equals(LAYOUT_LINEARLAYOUT)) {
-            view = new AutoLinearLayout(context, attrs);
-        }
-
-        if (name.equals(LAYOUT_RELATIVELAYOUT)) {
-            view = new AutoRelativeLayout(context, attrs);
-        }
-
-        if (view != null) return view;
-
-        return activity.onCreateView(parent, name, context, attrs);
+        return view;
+//        if (view != null) return view;
+//
+//        return activity.onCreateView(name, context, attrs);
     }
 }
