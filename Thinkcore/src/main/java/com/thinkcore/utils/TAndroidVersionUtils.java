@@ -11,8 +11,6 @@ public class TAndroidVersionUtils {
     private TAndroidVersionUtils() {
     }
 
-    ;
-
     /**
      */
     public static String getModel() {

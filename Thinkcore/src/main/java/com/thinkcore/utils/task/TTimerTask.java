@@ -4,12 +4,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TTimerTask {
-	private ITimerListener mListener;
-	private long mDelayMs;
-	private Timer mTimer;
-	private TimerTask mTimerTask;
+	private ITimerListener listener;
+	private long delayMs;
+	private Timer timer;
+	private TimerTask timerTask;
 	private boolean isStarted = false;
-	private TTimerTask mThis;
+	private TTimerTask that;
 
 	/**
 	 * 构造函数
@@ -20,9 +20,9 @@ public class TTimerTask {
 	 *            定时处理器，由调用者定制实现
 	 */
 	public TTimerTask(int delayMs, ITimerListener listen) {
-		mListener = listen;
-		mDelayMs = delayMs;
-		mThis = this;
+		this.listener = listen;
+		this.delayMs = delayMs;
+		this.that = this;
 	}
 
 	/**
@@ -30,21 +30,21 @@ public class TTimerTask {
 	 */
 	public void startTimer(boolean bFlag) {
 		stopTimer();
-		mTimer = new Timer(true);
-		mTimerTask = new TimerTask() {
+		timer = new Timer(true);
+		timerTask = new TimerTask() {
 
 			@Override
 			public void run() {
-				if (null != mListener && isRunning()) {
-					mListener.onTimerListen(mThis);
+				if (null != listener && isRunning()) {
+					listener.onTimerListen(that);
 				}
 			}
 
 		};
 		if (bFlag) {
-			mTimer.schedule(mTimerTask, 0, mDelayMs);
+			timer.schedule(timerTask, 0, delayMs);
 		} else {
-			mTimer.schedule(mTimerTask, mDelayMs);
+			timer.schedule(timerTask, delayMs);
 		}
 		isStarted = true;
 	}
@@ -53,13 +53,13 @@ public class TTimerTask {
 	 * 停止定时器
 	 */
 	public void stopTimer() {
-		if (null != mTimer) {
-			mTimer.cancel();
-			mTimer = null;
+		if (null != timer) {
+			timer.cancel();
+			timer = null;
 		}
-		if (null != mTimerTask) {
-			mTimerTask.cancel();
-			mTimerTask = null;
+		if (null != timerTask) {
+			timerTask.cancel();
+			timerTask = null;
 		}
 		isStarted = false;
 	}

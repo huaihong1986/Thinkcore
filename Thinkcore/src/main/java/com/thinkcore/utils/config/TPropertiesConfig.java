@@ -16,25 +16,27 @@ import android.content.Context;
  * @Android的Properties类型配置文件操作类
  */
 public class TPropertiesConfig implements TIConfig {
+    private static final String LOADFLAG = "assetsload";
+
     /**
      * assets中配置信息文件
      */
-    private String mAssetsPath = "/assets/config.properties";
+    private String assetsPath = "/assets/config.properties";
     /**
      * 软件Files文件夹中配置信息文件
      */
-    private String mFilesPath = "config.properties";
-    private static TPropertiesConfig mPropertiesConfig;
-    private static final String LOADFLAG = "assetsload";
-    private Context mContext;
-    private Properties mProperties;
+    private String filesPath = "config.properties";
+    private static TPropertiesConfig that;
+
+    private Context context;
+    private Properties properties;
 
     private TPropertiesConfig() {
 
     }
 
     public void initConfig(Context context) {
-        this.mContext = context;
+        this.context = context;
         loadConfig();
     }
 
@@ -43,17 +45,17 @@ public class TPropertiesConfig implements TIConfig {
      *
      * @return
      */
-    public static TPropertiesConfig getInstance() {
-        if (mPropertiesConfig == null) {
-            mPropertiesConfig = new TPropertiesConfig();
+    public static TPropertiesConfig getThat() {
+        if (that == null) {
+            that = new TPropertiesConfig();
         }
-        return mPropertiesConfig;
+        return that;
     }
 
     private void loadConfig() {
         Properties props = new Properties();
         InputStream in = TPropertiesConfig.class
-                .getResourceAsStream(mAssetsPath);
+                .getResourceAsStream(assetsPath);
         try {
             if (in != null) {
                 props.load(in);
@@ -67,7 +69,6 @@ public class TPropertiesConfig implements TIConfig {
             }
             setBoolean(LOADFLAG, true);
         } catch (IOException e1) {
-
             e1.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,7 +87,6 @@ public class TPropertiesConfig implements TIConfig {
     }
 
     public void setConfig(String key, String value) {
-
         if (value != null) {
             Properties props = getProperties();
             props.setProperty(key, value);
@@ -96,19 +96,19 @@ public class TPropertiesConfig implements TIConfig {
     }
 
     public String getAssetsPath() {
-        return mAssetsPath;
+        return assetsPath;
     }
 
     public void setAssetsPath(String assetsPath) {
-        this.mAssetsPath = assetsPath;
+        this.assetsPath = assetsPath;
     }
 
     public String getFilesPath() {
-        return mFilesPath;
+        return filesPath;
     }
 
     public void setFilesPath(String filesPath) {
-        this.mFilesPath = filesPath;
+        this.filesPath = filesPath;
     }
 
     /**
@@ -117,16 +117,16 @@ public class TPropertiesConfig implements TIConfig {
      * @return 返回配置实体
      */
     private Properties getProperties() {
-        if (mProperties == null) {
-            mProperties = getPro();
+        if (properties == null) {
+            properties = getPro();
         }
-        return mProperties;
+        return properties;
     }
 
     private Properties getPro() {
         Properties props = new Properties();
         try {
-            InputStream in = mContext.openFileInput(mFilesPath);
+            InputStream in = context.openFileInput(filesPath);
             props.load(in);
             in.close();
         } catch (IOException e) {
@@ -138,7 +138,7 @@ public class TPropertiesConfig implements TIConfig {
     private void setProperties(Properties p) {
         OutputStream out = null;
         try {
-            out = mContext.openFileOutput(mFilesPath, Context.MODE_PRIVATE);
+            out = context.openFileOutput(filesPath, Context.MODE_PRIVATE);
             p.store(out, null);
             out.flush();
         } catch (Exception e) {
@@ -294,97 +294,97 @@ public class TPropertiesConfig implements TIConfig {
 
     @Override
     public String getString(int resID, String defaultValue) {
-        return getString(this.mContext.getString(resID), defaultValue);
+        return getString(this.context.getString(resID), defaultValue);
     }
 
     @Override
     public int getInt(int resID, int defaultValue) {
 
-        return getInt(this.mContext.getString(resID), defaultValue);
+        return getInt(this.context.getString(resID), defaultValue);
     }
 
     @Override
     public boolean getBoolean(int resID, Boolean defaultValue) {
 
-        return getBoolean(this.mContext.getString(resID), defaultValue);
+        return getBoolean(this.context.getString(resID), defaultValue);
     }
 
     @Override
     public byte[] getByte(int resID, byte[] defaultValue) {
 
-        return getByte(this.mContext.getString(resID), defaultValue);
+        return getByte(this.context.getString(resID), defaultValue);
     }
 
     @Override
     public short getShort(int resID, Short defaultValue) {
 
-        return getShort(this.mContext.getString(resID), defaultValue);
+        return getShort(this.context.getString(resID), defaultValue);
     }
 
     @Override
     public long getLong(int resID, Long defaultValue) {
 
-        return getLong(this.mContext.getString(resID), defaultValue);
+        return getLong(this.context.getString(resID), defaultValue);
     }
 
     @Override
     public float getFloat(int resID, Float defaultValue) {
 
-        return getFloat(this.mContext.getString(resID), defaultValue);
+        return getFloat(this.context.getString(resID), defaultValue);
     }
 
     @Override
     public double getDouble(int resID, Double defaultValue) {
 
-        return getDouble(this.mContext.getString(resID), defaultValue);
+        return getDouble(this.context.getString(resID), defaultValue);
     }
 
     @Override
     public void setString(int resID, String value) {
 
-        setString(this.mContext.getString(resID), value);
+        setString(this.context.getString(resID), value);
     }
 
     @Override
     public void setInt(int resID, int value) {
 
-        setInt(this.mContext.getString(resID), value);
+        setInt(this.context.getString(resID), value);
     }
 
     @Override
     public void setBoolean(int resID, Boolean value) {
 
-        setBoolean(this.mContext.getString(resID), value);
+        setBoolean(this.context.getString(resID), value);
     }
 
     @Override
     public void setByte(int resID, byte[] value) {
 
-        setByte(this.mContext.getString(resID), value);
+        setByte(this.context.getString(resID), value);
     }
 
     @Override
     public void setShort(int resID, short value) {
 
-        setShort(this.mContext.getString(resID), value);
+        setShort(this.context.getString(resID), value);
     }
 
     @Override
     public void setLong(int resID, long value) {
 
-        setLong(this.mContext.getString(resID), value);
+        setLong(this.context.getString(resID), value);
     }
 
     @Override
     public void setFloat(int resID, float value) {
 
-        setFloat(this.mContext.getString(resID), value);
+        setFloat(this.context.getString(resID), value);
     }
 
     @Override
     public void setDouble(int resID, double value) {
 
-        setDouble(this.mContext.getString(resID), value);
+        setDouble(this.context.getString(resID), value);
     }
 
     @Override
@@ -434,7 +434,6 @@ public class TPropertiesConfig implements TIConfig {
 
     @Override
     public <T> T getConfig(Class<T> clazz) {
-
         Field[] fields = clazz.getDeclaredFields();
         T entity = null;
         try {
@@ -519,7 +518,5 @@ public class TPropertiesConfig implements TIConfig {
 
     @Override
     public void open() {
-
     }
-
 }

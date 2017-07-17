@@ -1,6 +1,8 @@
 package com.thinkcore.activity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import com.thinkcore.TApplication;
 import com.thinkcore.dialog.TDialogManager;
@@ -29,7 +31,8 @@ public abstract class TActivity extends Activity {
 
     protected Context mContext;
     protected Status mStatus;
-    protected ArrayList<String> mActivityParameters = new ArrayList<String>();
+    protected HashMap<Integer, TActivityUtils.IActivityResult> mIActivityResult = new HashMap<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,6 @@ public abstract class TActivity extends Activity {
         mContext = this;
         mStatus = Status.CREATED;
 
-        initActivityParameter(getIntent());
         TActivityManager.getInstance().addActivity(this);// 添加activity
     }
 
@@ -73,27 +75,13 @@ public abstract class TActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-
         TActivityManager.getInstance().removeActivity(this);
-
         TDialogManager.hideProgressDialog(this);
-
-        if (mActivityParameters != null)
-            mActivityParameters.clear();
-        mActivityParameters = null;
-
+        mIActivityResult.clear();
         mStatus = Status.DESTORYED;
-
         mContext = null;
         super.onDestroy();
     }
-
-//    @Override
-//    public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
-//        View view = AutoLayoutActivity.onCreateView(name, context, attrs);
-//        if (view != null) return view;
-//        return super.onCreateView(parent, name, context, attrs);
-//    }
 
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
@@ -120,28 +108,12 @@ public abstract class TActivity extends Activity {
         AutoLayout.getInstance().auto(this);
     }
 
-    //	AutoLayoutActivity.onCreateView()
-
-    private void initActivityParameter(Intent intent) {
-        if (mActivityParameters == null)
-            return;
-        mActivityParameters.clear(); // Activity固定参数
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA0));
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA1));
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA2));
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA3));
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA4));
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA5));
-    }
-
-    protected ArrayList<String> getActivityParameter() {
-        return mActivityParameters;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        TActivityUtils.IActivityResult iActivityResult = mIActivityResult.get(requestCode);
+        if (iActivityResult != null)
+            iActivityResult.onActivityResult(resultCode, data);
     }
 
     public Status getStatus() {
@@ -159,5 +131,9 @@ public abstract class TActivity extends Activity {
 
     public static String getResString(int id) {
         return TApplication.getInstance().getString(id);
+    }
+
+    public HashMap<Integer, TActivityUtils.IActivityResult> getIActivityResult() {
+        return mIActivityResult;
     }
 }

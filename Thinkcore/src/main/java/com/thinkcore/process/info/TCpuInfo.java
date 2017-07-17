@@ -29,51 +29,51 @@ import com.thinkcore.utils.log.TLog;
 public class TCpuInfo {
 	private static final String TAG = TCpuInfo.class.getSimpleName();
 
-	private long mProcessCpu;
-	private long mIdleCpu;
-	private long mTotalCpu;
-	private long mTotalMemorySize;
-	private int mPid;
+	private long processCpu;
+	private long idleCpu;
+	private long totalCpu;
+	private long totalMemorySize;
+	private int pid;
 
 	//
 	public TCpuInfo(int pid) {
-		mPid = pid;
-		mTotalMemorySize = TMemoryUtils.getTotalMemory();
+		this.pid = pid;
+		this.totalMemorySize = TMemoryUtils.getTotalMemory();
 	}
 
 	public long getProcessCpu() {
-		return mProcessCpu;
+		return processCpu;
 	}
 
 	public long getTotalMemorySize() {
-		return mTotalMemorySize;
+		return totalMemorySize;
 	}
 
 	public long getIdleCpu() {
-		return mIdleCpu;
+		return idleCpu;
 	}
 
 	public long getTotalCpu() {
-		return mTotalCpu;
+		return totalCpu;
 	}
 
 	// 读取cpu状态
 	public void initConfig() {
-		String processPid = Integer.toString(mPid);
+		String processPid = Integer.toString(pid);
 		String cpuStatPath = "/proc/" + processPid + "/stat";
 		try {
 			// monitor cpu stat of certain process
-			RandomAccessFile mProcessCpuInfo = new RandomAccessFile(
+			RandomAccessFile processCpuInfo = new RandomAccessFile(
 					cpuStatPath, "r");
 			String line = "";
 			StringBuffer stringBuffer = new StringBuffer();
 			stringBuffer.setLength(0);
-			while ((line = mProcessCpuInfo.readLine()) != null) {
+			while ((line = processCpuInfo.readLine()) != null) {
 				stringBuffer.append(line + "\n");
 			}
 			String[] tok = stringBuffer.toString().split(" ");
-			mProcessCpu = Long.parseLong(tok[13]) + Long.parseLong(tok[14]);
-			mProcessCpuInfo.close();
+			processCpu = Long.parseLong(tok[13]) + Long.parseLong(tok[14]);
+			processCpuInfo.close();
 		} catch (FileNotFoundException e) {
 			TLog.e(TAG, "FileNotFoundException: " + e.getMessage());
 			e.printStackTrace();
@@ -85,8 +85,8 @@ public class TCpuInfo {
 			// monitor total and idle cpu stat of certain process
 			RandomAccessFile cpuInfo = new RandomAccessFile("/proc/stat", "r");
 			String[] toks = cpuInfo.readLine().split("\\s+");
-			mIdleCpu = Long.parseLong(toks[4]);
-			mTotalCpu = Long.parseLong(toks[1]) + Long.parseLong(toks[2])
+			idleCpu = Long.parseLong(toks[4]);
+			totalCpu = Long.parseLong(toks[1]) + Long.parseLong(toks[2])
 					+ Long.parseLong(toks[3]) + Long.parseLong(toks[4])
 					+ Long.parseLong(toks[6]) + Long.parseLong(toks[5])
 					+ Long.parseLong(toks[7]);

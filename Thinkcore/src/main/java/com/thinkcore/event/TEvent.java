@@ -1,42 +1,42 @@
 package com.thinkcore.event;
 
 public class TEvent {
-	protected int mMainEvent = -1;
-	protected int mSubEvent = -1;
-	protected Object mParams = null;
+    protected int mainEvent = -1;
+    protected int subEvent = -1;
+    protected Object params = null;
 
-	public TEvent() {
-	}
+    public TEvent() {
+    }
 
-	public TEvent(int mainEvent) {
-		mMainEvent = mainEvent;
-	}
+    public TEvent(int mainEvent) {
+        this.mainEvent = mainEvent;
+    }
 
-	public TEvent(int mainEvent, int subEvent) {
-		mMainEvent = mainEvent;
-		mSubEvent = subEvent;
-	}
+    public TEvent(int mainEvent, int subEvent) {
+        this.mainEvent = mainEvent;
+        this.subEvent = subEvent;
+    }
 
-	public TEvent(int mainEvent, int subEvent, Object params) {
-		mMainEvent = mainEvent;
-		mSubEvent = subEvent;
-		mParams = params;
-	}
+    public TEvent(int mainEvent, int subEvent, Object params) {
+        this.mainEvent = mainEvent;
+        this.subEvent = subEvent;
+        this.params = params;
+    }
 
-	public TEvent(int mainEvent, Object params) {
-		mMainEvent = mainEvent;
-		mParams = params;
-	}
+    public TEvent(int mainEvent, Object params) {
+        this.mainEvent = mainEvent;
+        this.params = params;
+    }
 
-	public int getMainEvent() {
-		return mMainEvent;
-	}
+    public int getMainEvent() {
+        return mainEvent;
+    }
 
-	public int getSubEvent() {
-		return mMainEvent;
-	}
+    public int getSubEvent() {
+        return mainEvent;
+    }
 
-	public Object getParams() {
-		return mParams;
-	}
+    public Object getParams() {
+        return params;
+    }
 }

@@ -10,13 +10,12 @@ import android.view.ViewGroup;
 
 import com.thinkcore.TApplication;
 import com.thinkcore.dialog.TDialogManager;
-import com.thinkcore.event.TEvent;
 import com.thinkcore.utils.TActivityUtils;
 import com.thinkcore.utils.TToastUtils;
 import com.thinkcore.view.autolayout.AutoLayout;
 import com.thinkcore.view.autolayout.AutoLayoutActivity;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 //界面
 public abstract class TAppActivity extends AppCompatActivity {
@@ -28,16 +27,13 @@ public abstract class TAppActivity extends AppCompatActivity {
 
     protected Context mContext;
     protected Status mStatus;
-    protected ArrayList<String> mActivityParameters = new ArrayList<String>();
+    protected HashMap<Integer, TActivityUtils.IActivityResult> mIActivityResult = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
         mStatus = Status.CREATED;
-
-        initActivityParameter(getIntent());
-
         TActivityManager.getInstance().addActivity(this);// 添加activity
     }
 
@@ -74,15 +70,9 @@ public abstract class TAppActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         TActivityManager.getInstance().removeActivity(this);
-
         TDialogManager.hideProgressDialog(this);
-
-        if (mActivityParameters != null)
-            mActivityParameters.clear();
-        mActivityParameters = null;
-
+        mIActivityResult.clear();
         mStatus = Status.DESTORYED;
-
         mContext = null;
         super.onDestroy();
     }
@@ -119,26 +109,12 @@ public abstract class TAppActivity extends AppCompatActivity {
         AutoLayout.getInstance().auto(this);
     }
 
-    private void initActivityParameter(Intent intent) {
-        if (mActivityParameters == null)
-            return;
-        mActivityParameters.clear(); // Activity固定参数
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA0));
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA1));
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA2));
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA3));
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA4));
-        mActivityParameters.add(intent
-                .getStringExtra(TActivityUtils.FIELD_DATA5));
-    }
-
-    protected ArrayList<String> getActivityParameter() {
-        return mActivityParameters;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        TActivityUtils.IActivityResult iActivityResult = mIActivityResult.get(requestCode);
+        if (iActivityResult != null)
+            iActivityResult.onActivityResult(resultCode, data);
     }
 
     public Status getStatus() {
@@ -156,5 +132,9 @@ public abstract class TAppActivity extends AppCompatActivity {
 
     public static String getResString(int id) {
         return TApplication.getInstance().getString(id);
+    }
+
+    public HashMap<Integer, TActivityUtils.IActivityResult> getIActivityResult() {
+        return mIActivityResult;
     }
 }

@@ -28,18 +28,18 @@ import android.content.SharedPreferences.Editor;
  * @Android的Preference类型配置文件操作类
  */
 public class TPreferenceConfig implements TIConfig{
-	private Context mContext;
+	private Context context;
 	private Editor edit = null;
-	private SharedPreferences mSharedPreferences;
-	private String mFilename = TPreferenceConfig.class.getSimpleName();
+	private SharedPreferences sharedPreferences;
+	private String filename = TPreferenceConfig.class.getSimpleName();
 	private Boolean isLoad = false;
-	private static TPreferenceConfig mThisConfig;
+	private static TPreferenceConfig that;
 
 	private TPreferenceConfig() {
 	}
 
 	public void initConfig(Context context) {
-		mContext = context;
+		this.context = context;
 		loadConfig();
 	}
 
@@ -49,18 +49,18 @@ public class TPreferenceConfig implements TIConfig{
 	 *
 	 * @return
 	 */
-	public static TPreferenceConfig getInstance() {
-		if (mThisConfig == null) {
-			mThisConfig = new TPreferenceConfig();
+	public static TPreferenceConfig getThat() {
+		if (that == null) {
+			that = new TPreferenceConfig();
 		}
-		return mThisConfig;
+		return that;
 	}
 
 	private void loadConfig() {
 		try {
-			mSharedPreferences = mContext.getSharedPreferences(mFilename,
+			sharedPreferences = context.getSharedPreferences(filename,
 					Context.MODE_WORLD_WRITEABLE);
-			edit = mSharedPreferences.edit();
+			edit = sharedPreferences.edit();
 			isLoad = true;
 		} catch (Exception e) {
 			isLoad = false;
@@ -124,68 +124,68 @@ public class TPreferenceConfig implements TIConfig{
 	@Override
 	public void setString(int resID, String value) {
 
-		setString(this.mContext.getString(resID), value);
+		setString(this.context.getString(resID), value);
 
 	}
 
 	@Override
 	public void setInt(int resID, int value) {
 
-		setInt(this.mContext.getString(resID), value);
+		setInt(this.context.getString(resID), value);
 	}
 
 	@Override
 	public void setBoolean(int resID, Boolean value) {
 
-		setBoolean(this.mContext.getString(resID), value);
+		setBoolean(this.context.getString(resID), value);
 	}
 
 	@Override
 	public void setByte(int resID, byte[] value) {
 
-		setByte(this.mContext.getString(resID), value);
+		setByte(this.context.getString(resID), value);
 	}
 
 	@Override
 	public void setShort(int resID, short value) {
 
-		setShort(this.mContext.getString(resID), value);
+		setShort(this.context.getString(resID), value);
 	}
 
 	@Override
 	public void setLong(int resID, long value) {
 
-		setLong(this.mContext.getString(resID), value);
+		setLong(this.context.getString(resID), value);
 	}
 
 	@Override
 	public void setFloat(int resID, float value) {
 
-		setFloat(this.mContext.getString(resID), value);
+		setFloat(this.context.getString(resID), value);
 	}
 
 	@Override
 	public void setDouble(int resID, double value) {
 
-		setDouble(this.mContext.getString(resID), value);
+		setDouble(this.context.getString(resID), value);
 	}
 
 	@Override
 	public String getString(String key, String defaultValue) {
 
-		return mSharedPreferences.getString(key, defaultValue);
+		return sharedPreferences.getString(key, defaultValue);
 	}
 
 	@Override
 	public int getInt(String key, int defaultValue) {
 
-		return mSharedPreferences.getInt(key, defaultValue);
+		return sharedPreferences.getInt(key, defaultValue);
 	}
 
 	@Override
 	public boolean getBoolean(String key, Boolean defaultValue) {
 
-		return mSharedPreferences.getBoolean(key, defaultValue);
+		return sharedPreferences.getBoolean(key, defaultValue);
 	}
 
 	@Override
@@ -213,13 +213,13 @@ public class TPreferenceConfig implements TIConfig{
 	@Override
 	public long getLong(String key, Long defaultValue) {
 
-		return mSharedPreferences.getLong(key, defaultValue);
+		return sharedPreferences.getLong(key, defaultValue);
 	}
 
 	@Override
 	public float getFloat(String key, Float defaultValue) {
 
-		return mSharedPreferences.getFloat(key, defaultValue);
+		return sharedPreferences.getFloat(key, defaultValue);
 	}
 
 	@Override
@@ -236,49 +236,49 @@ public class TPreferenceConfig implements TIConfig{
 	@Override
 	public String getString(int resID, String defaultValue) {
 
-		return getString(this.mContext.getString(resID), defaultValue);
+		return getString(this.context.getString(resID), defaultValue);
 	}
 
 	@Override
 	public int getInt(int resID, int defaultValue) {
 
-		return getInt(this.mContext.getString(resID), defaultValue);
+		return getInt(this.context.getString(resID), defaultValue);
 	}
 
 	@Override
 	public boolean getBoolean(int resID, Boolean defaultValue) {
 
-		return getBoolean(this.mContext.getString(resID), defaultValue);
+		return getBoolean(this.context.getString(resID), defaultValue);
 	}
 
 	@Override
 	public byte[] getByte(int resID, byte[] defaultValue) {
 
-		return getByte(this.mContext.getString(resID), defaultValue);
+		return getByte(this.context.getString(resID), defaultValue);
 	}
 
 	@Override
 	public short getShort(int resID, Short defaultValue) {
 
-		return getShort(this.mContext.getString(resID), defaultValue);
+		return getShort(this.context.getString(resID), defaultValue);
 	}
 
 	@Override
 	public long getLong(int resID, Long defaultValue) {
 
-		return getLong(this.mContext.getString(resID), defaultValue);
+		return getLong(this.context.getString(resID), defaultValue);
 	}
 
 	@Override
 	public float getFloat(int resID, Float defaultValue) {
 
-		return getFloat(this.mContext.getString(resID), defaultValue);
+		return getFloat(this.context.getString(resID), defaultValue);
 	}
 
 	@Override
 	public double getDouble(int resID, Double defaultValue) {
 
-		return getDouble(this.mContext.getString(resID), defaultValue);
+		return getDouble(this.context.getString(resID), defaultValue);
 	}
 
 	@Override
@@ -392,7 +392,7 @@ public class TPreferenceConfig implements TIConfig{
 	@Override
 	public void removeAll() {
 		try {
-			Map<String, ?> values = mSharedPreferences.getAll();
+			Map<String, ?> values = sharedPreferences.getAll();
 			for (String key : values.keySet()) {
 				edit.remove(key);
 			}

@@ -28,131 +28,128 @@ import android.content.IntentFilter;
 /**
  * @Title 监听网络广播
  */
-public class TNetworkStateReceiver extends BroadcastReceiver  {
-	private static Boolean mNetworkAvailable = false;
-	private static netType mNetType;
-	private static ArrayList<INetChangeListener> mNetChangeObserverArrayList = new ArrayList<INetChangeListener>();
-	private final static String ANDROID_NET_CHANGE_ACTION = "android.net.conn.CONNECTIVITY_CHANGE";
-	public final static String TA_ANDROID_NET_CHANGE_ACTION = "think.android.net.conn.CONNECTIVITY_CHANGE";
-	private static TNetworkStateReceiver mThis;
-	private Context mContext;
+public class TNetworkStateReceiver extends BroadcastReceiver {
+    private static Boolean networkAvailable = false;
+    private static netType netType;
+    private static ArrayList<INetChangeListener> netChangeObserverArrayList = new ArrayList<INetChangeListener>();
+    private final static String ANDROID_NET_CHANGE_ACTION = "android.net.conn.CONNECTIVITY_CHANGE";
+    public final static String TA_ANDROID_NET_CHANGE_ACTION = "think.android.net.conn.CONNECTIVITY_CHANGE";
+    private static TNetworkStateReceiver that;
+    private Context context;
 
-	public static TNetworkStateReceiver getInstance() {
-		if (mThis == null) {
-			mThis = new TNetworkStateReceiver();
-		}
-		return mThis;
-	}
+    public static TNetworkStateReceiver getThat() {
+        if (that == null) {
+            that = new TNetworkStateReceiver();
+        }
+        return that;
+    }
 
-	public void initConfig(Context context) {
-		mContext = context;
-		registerNetworkStateReceiver();
-	}
+    public void initConfig(Context context) {
+        this.context = context;
+        registerNetworkStateReceiver();
+    }
 
-	public void release() {
-		unRegisterNetworkStateReceiver();
-	}
+    public void release() {
+        unRegisterNetworkStateReceiver();
+    }
 
-	@Override
-	public void onReceive(Context context, Intent intent) {
-		if (intent.getAction().equalsIgnoreCase(ANDROID_NET_CHANGE_ACTION)
-				|| intent.getAction().equalsIgnoreCase(
-						TA_ANDROID_NET_CHANGE_ACTION)) {
-			TLog.i(TNetworkStateReceiver.this, "网络状态改变.");
-			if (!TNetWorkUtil.isNetworkAvailable()) {
-				TLog.i(TNetworkStateReceiver.this, "没有网络连接.");
-				mNetworkAvailable = false;
-			} else {
-				TLog.i(TNetworkStateReceiver.this, "网络连接成功.");
-				mNetType = TNetWorkUtil.getAPNType();
-				mNetworkAvailable = true;
-			}
-			notifyObserver();
-		}
-	}
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (intent.getAction().equalsIgnoreCase(ANDROID_NET_CHANGE_ACTION)
+                || intent.getAction().equalsIgnoreCase(
+                TA_ANDROID_NET_CHANGE_ACTION)) {
+            TLog.i(TNetworkStateReceiver.this, "网络状态改变.");
+            if (!TNetWorkUtil.isNetworkAvailable()) {
+                TLog.i(TNetworkStateReceiver.this, "没有网络连接.");
+                networkAvailable = false;
+            } else {
+                TLog.i(TNetworkStateReceiver.this, "网络连接成功.");
+                netType = TNetWorkUtil.getAPNType();
+                networkAvailable = true;
+            }
+            notifyObserver();
+        }
+    }
 
-	/**
-	 * 注册网络状态广播
-	 * 
-	 */
-	private void registerNetworkStateReceiver() {
-		IntentFilter filter = new IntentFilter();
-		filter.addAction(TA_ANDROID_NET_CHANGE_ACTION);
-		filter.addAction(ANDROID_NET_CHANGE_ACTION);
-		mContext.getApplicationContext()
-				.registerReceiver(getInstance(), filter);
-	}
+    /**
+     * 注册网络状态广播
+     */
+    private void registerNetworkStateReceiver() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(TA_ANDROID_NET_CHANGE_ACTION);
+        filter.addAction(ANDROID_NET_CHANGE_ACTION);
+        context.getApplicationContext()
+                .registerReceiver(getThat(), filter);
+    }
 
-	/**
-	 * 检查网络状态
-	 * 
-	 */
-	public void checkNetworkState() {
-		Intent intent = new Intent();
-		intent.setAction(TA_ANDROID_NET_CHANGE_ACTION);
-		mContext.sendBroadcast(intent);
-	}
+    /**
+     * 检查网络状态
+     */
+    public void checkNetworkState() {
+        Intent intent = new Intent();
+        intent.setAction(TA_ANDROID_NET_CHANGE_ACTION);
+        context.sendBroadcast(intent);
+    }
 
-	/**
-	 * 注销网络状态广播
-	 * 
-	 */
-	private void unRegisterNetworkStateReceiver() {
-		try {
-			mContext.getApplicationContext().unregisterReceiver(this);
-		} catch (Exception e) {
-			TLog.d("TANetworkStateReceiver", e.getMessage());
-		}
-	}
+    /**
+     * 注销网络状态广播
+     */
+    private void unRegisterNetworkStateReceiver() {
+        try {
+            context.getApplicationContext().unregisterReceiver(this);
+        } catch (Exception e) {
+            TLog.d("TANetworkStateReceiver", e.getMessage());
+        }
+    }
 
-	/**
-	 * 获取当前网络状态，true为网络连接成功，否则网络连接失败
-	 * 
-	 * @return
-	 */
-	public Boolean isNetworkAvailable() {
-		return mNetworkAvailable;
-	}
+    /**
+     * 获取当前网络状态，true为网络连接成功，否则网络连接失败
+     *
+     * @return
+     */
+    public Boolean isNetworkAvailable() {
+        return networkAvailable;
+    }
 
-	public netType getAPNType() {
-		return mNetType;
-	}
+    public netType getAPNType() {
+        return netType;
+    }
 
-	private void notifyObserver() {
-		for (int i = 0; i < mNetChangeObserverArrayList.size(); i++) {
-			INetChangeListener observer = mNetChangeObserverArrayList.get(i);
-			if (observer != null) {
-				if (isNetworkAvailable()) {
-					observer.onConnect(mNetType);
-				} else {
-					observer.onDisConnect();
-				}
-			}
-		}
+    private void notifyObserver() {
+        for (int i = 0; i < netChangeObserverArrayList.size(); i++) {
+            INetChangeListener observer = netChangeObserverArrayList.get(i);
+            if (observer != null) {
+                if (isNetworkAvailable()) {
+                    observer.onConnect(netType);
+                } else {
+                    observer.onDisConnect();
+                }
+            }
+        }
 
-	}
+    }
 
-	/**
-	 * 注册网络连接观察者
-	 * 
-	 * @param observer
-	 */
-	public static void registerObserver(INetChangeListener observer) {
-		if (mNetChangeObserverArrayList == null) {
-			mNetChangeObserverArrayList = new ArrayList<INetChangeListener>();
-		}
-		mNetChangeObserverArrayList.add(observer);
-	}
+    /**
+     * 注册网络连接观察者
+     *
+     * @param observer
+     */
+    public static void registerObserver(INetChangeListener observer) {
+        if (netChangeObserverArrayList == null) {
+            netChangeObserverArrayList = new ArrayList<INetChangeListener>();
+        }
+        netChangeObserverArrayList.add(observer);
+    }
 
-	/**
-	 * 注销网络连接观察者
-	 * 
-	 * @param observer
-	 */
-	public void removeRegisterObserver(INetChangeListener observer) {
-		if (mNetChangeObserverArrayList != null) {
-			mNetChangeObserverArrayList.remove(observer);
-		}
-	}
+    /**
+     * 注销网络连接观察者
+     *
+     * @param observer
+     */
+    public void removeRegisterObserver(INetChangeListener observer) {
+        if (netChangeObserverArrayList != null) {
+            netChangeObserverArrayList.remove(observer);
+        }
+    }
 
 }

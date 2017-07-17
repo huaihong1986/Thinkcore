@@ -13,7 +13,7 @@ import com.thinkcore.storage.helpers.OrderType;
 
 public class StorageTestCase extends InstrumentationTestCase {
 
-	private Storage mStorage;
+	private Storage storage;
 
 	private final static String DIR_NAME = "Storage Test";
 	private final static String FILE_NAME = "test.txt";
@@ -27,11 +27,11 @@ public class StorageTestCase extends InstrumentationTestCase {
 		Context context = getInstrumentation().getContext();
 
 		// set a storage
-		mStorage = null;
+		storage = null;
 		if (TStorage.getInstance().isExternalStorageWritable()) {
-			mStorage = TStorage.getInstance().getExternalStorage();
+			storage = TStorage.getInstance().getExternalStorage();
 		} else {
-			mStorage = TStorage.getInstance().getInternalStorage(context);
+			storage = TStorage.getInstance().getInternalStorage(context);
 		}
 	}
 
@@ -39,7 +39,7 @@ public class StorageTestCase extends InstrumentationTestCase {
 	protected void tearDown() throws Exception {
 
 		// delete dir if exists
-		mStorage.deleteDirectory(DIR_NAME);
+		storage.deleteDirectory(DIR_NAME);
 
 		super.tearDown();
 	}
@@ -50,7 +50,7 @@ public class StorageTestCase extends InstrumentationTestCase {
 	public void testCreateDirectory() {
 
 		// TEST: create dir
-		boolean wasCreated = mStorage.createDirectory(DIR_NAME, true);
+		boolean wasCreated = storage.createDirectory(DIR_NAME, true);
 		assertEquals(true, wasCreated);
 
 	}
@@ -64,7 +64,7 @@ public class StorageTestCase extends InstrumentationTestCase {
 		testCreateDirectory();
 
 		// TEST: create file
-		boolean wasCreated = mStorage.createFile(DIR_NAME, FILE_NAME,
+		boolean wasCreated = storage.createFile(DIR_NAME, FILE_NAME,
 				FILE_CONTENT);
 		assertEquals(true, wasCreated);
 
@@ -79,7 +79,7 @@ public class StorageTestCase extends InstrumentationTestCase {
 		testCreateFile();
 
 		// TEST: read the content and test
-		String content = mStorage.readTextFile(DIR_NAME, FILE_NAME);
+		String content = storage.readTextFile(DIR_NAME, FILE_NAME);
 		assertEquals(FILE_CONTENT, content);
 
 	}
@@ -95,8 +95,8 @@ public class StorageTestCase extends InstrumentationTestCase {
 		String newData = "new added data";
 
 		// TEST: append new data and test
-		mStorage.appendFile(DIR_NAME, FILE_NAME, newData);
-		String content = mStorage.readTextFile(DIR_NAME, FILE_NAME);
+		storage.appendFile(DIR_NAME, FILE_NAME, newData);
+		String content = storage.readTextFile(DIR_NAME, FILE_NAME);
 		assertTrue(content.contains(newData));
 	}
 
@@ -117,15 +117,15 @@ public class StorageTestCase extends InstrumentationTestCase {
 		TStorage.updateConfiguration(configuration);
 
 		// create file
-		mStorage.createFile(DIR_NAME, FILE_SECURE_NAME, FILE_SECURE_CONTENT);
+		storage.createFile(DIR_NAME, FILE_SECURE_NAME, FILE_SECURE_CONTENT);
 
 		// TEST: check the content of the file to be encrypted
-		String content = mStorage.readTextFile(DIR_NAME, FILE_SECURE_NAME);
+		String content = storage.readTextFile(DIR_NAME, FILE_SECURE_NAME);
 		assertEquals(FILE_SECURE_CONTENT, content);
 
 		// TEST: check after reseting the configuration to default
 		TStorage.resetConfiguration();
-		content = mStorage.readTextFile(DIR_NAME, FILE_SECURE_NAME);
+		content = storage.readTextFile(DIR_NAME, FILE_SECURE_NAME);
 		assertNotSame(FILE_SECURE_CONTENT, content);
 	}
 
@@ -135,9 +135,9 @@ public class StorageTestCase extends InstrumentationTestCase {
 		testCreateFile();
 
 		// rename
-		File file = mStorage.getFile(DIR_NAME, FILE_NAME);
-		mStorage.rename(file, "new_" + FILE_NAME);
-		boolean isExist = mStorage.isFileExist(DIR_NAME, "new_" + FILE_NAME);
+		File file = storage.getFile(DIR_NAME, FILE_NAME);
+		storage.rename(file, "new_" + FILE_NAME);
+		boolean isExist = storage.isFileExist(DIR_NAME, "new_" + FILE_NAME);
 		assertEquals(true, isExist);
 	}
 
@@ -147,16 +147,16 @@ public class StorageTestCase extends InstrumentationTestCase {
 		testCreateFile();
 
 		// copy file
-		File fileSource = mStorage.getFile(DIR_NAME, FILE_NAME);
-		mStorage.copy(fileSource, DIR_NAME, FILE_NAME + "C");
+		File fileSource = storage.getFile(DIR_NAME, FILE_NAME);
+		storage.copy(fileSource, DIR_NAME, FILE_NAME + "C");
 
 		// validate existence
-		boolean isExist = mStorage.isFileExist(DIR_NAME, FILE_NAME + "C");
+		boolean isExist = storage.isFileExist(DIR_NAME, FILE_NAME + "C");
 		assertEquals(true, isExist);
 
 		// validate content
-		assertEquals(mStorage.readTextFile(DIR_NAME, FILE_NAME),
-				mStorage.readTextFile(DIR_NAME, FILE_NAME + "C"));
+		assertEquals(storage.readTextFile(DIR_NAME, FILE_NAME),
+				storage.readTextFile(DIR_NAME, FILE_NAME + "C"));
 	}
 
 	public void testMove() {
@@ -165,15 +165,15 @@ public class StorageTestCase extends InstrumentationTestCase {
 		testCreateFile();
 
 		// copy file
-		File fileSource = mStorage.getFile(DIR_NAME, FILE_NAME);
-		mStorage.move(fileSource, DIR_NAME, FILE_NAME + "C");
+		File fileSource = storage.getFile(DIR_NAME, FILE_NAME);
+		storage.move(fileSource, DIR_NAME, FILE_NAME + "C");
 
 		// validate existence destination
-		boolean isExist = mStorage.isFileExist(DIR_NAME, FILE_NAME + "C");
+		boolean isExist = storage.isFileExist(DIR_NAME, FILE_NAME + "C");
 		assertEquals(true, isExist);
 
 		// validate existence source (it shouldn't exist)
-		isExist = mStorage.isFileExist(DIR_NAME, FILE_NAME);
+		isExist = storage.isFileExist(DIR_NAME, FILE_NAME);
 		assertEquals(false, isExist);
 	}
 
@@ -183,38 +183,38 @@ public class StorageTestCase extends InstrumentationTestCase {
 		testCreateDirectory();
 
 		// create 5 files
-		mStorage.createFile(DIR_NAME, "file1.txt", "");
-		mStorage.createFile(DIR_NAME, "file2.txt", "");
-		mStorage.createFile(DIR_NAME, "file3.log", "");
-		mStorage.createFile(DIR_NAME, "file4.log", "");
-		mStorage.createFile(DIR_NAME, "file5.txt", "");
+		storage.createFile(DIR_NAME, "file1.txt", "");
+		storage.createFile(DIR_NAME, "file2.txt", "");
+		storage.createFile(DIR_NAME, "file3.log", "");
+		storage.createFile(DIR_NAME, "file4.log", "");
+		storage.createFile(DIR_NAME, "file5.txt", "");
 
 		// get files that ends with *.txt only. should be 3 of them
 		String TXT_PATTERN = "([^\\s]+(\\.(?i)(txt))$)";
-		List<File> filesTexts = mStorage.getFiles(DIR_NAME, TXT_PATTERN);
+		List<File> filesTexts = storage.getFiles(DIR_NAME, TXT_PATTERN);
 		assertEquals(3, filesTexts.size());
 
 		// create more log files and check for *.log. should be 4 of them
 		String LOG_PATTERN = "([^\\s]+(\\.(?i)(log))$)";
-		mStorage.createFile(DIR_NAME, "file6.log", "");
-		mStorage.createFile(DIR_NAME, "file7.log", "");
-		List<File> filesLogs = mStorage.getFiles(DIR_NAME, LOG_PATTERN);
+		storage.createFile(DIR_NAME, "file6.log", "");
+		storage.createFile(DIR_NAME, "file7.log", "");
+		List<File> filesLogs = storage.getFiles(DIR_NAME, LOG_PATTERN);
 		assertEquals(4, filesLogs.size());
 
 		// create dir and add files to dir. check again for *.log files. should
 		// be 4 of them.
-		mStorage.createDirectory(DIR_NAME + File.separator + "New Dir");
-		mStorage.createFile(DIR_NAME + File.separator + "New Dir", "file8.log",
+		storage.createDirectory(DIR_NAME + File.separator + "New Dir");
+		storage.createFile(DIR_NAME + File.separator + "New Dir", "file8.log",
 				"");
-		mStorage.createFile(DIR_NAME + File.separator + "New Dir", "file9.log",
+		storage.createFile(DIR_NAME + File.separator + "New Dir", "file9.log",
 				"");
-		mStorage.createFile(DIR_NAME + File.separator + "New Dir",
+		storage.createFile(DIR_NAME + File.separator + "New Dir",
 				"file10.txt", "");
-		List<File> filesLogs2 = mStorage.getFiles(DIR_NAME, LOG_PATTERN);
+		List<File> filesLogs2 = storage.getFiles(DIR_NAME, LOG_PATTERN);
 		assertEquals(4, filesLogs2.size());
 
 		// check inside new dir for *.log files. should be 2 of them
-		List<File> filesLogs3 = mStorage.getFiles(DIR_NAME + File.separator
+		List<File> filesLogs3 = storage.getFiles(DIR_NAME + File.separator
 				+ "New Dir", LOG_PATTERN);
 		assertEquals(2, filesLogs3.size());
 	}
@@ -225,40 +225,40 @@ public class StorageTestCase extends InstrumentationTestCase {
 		testCreateDirectory();
 
 		// TEST - Order by SIZE
-		mStorage.createFile(DIR_NAME, "file1.txt", "111222333");
-		mStorage.createFile(DIR_NAME, "file2.txt", "");
-		mStorage.createFile(DIR_NAME, "file3.log", "111");
-		List<File> filesSize = mStorage.getFiles(DIR_NAME, OrderType.SIZE);
+		storage.createFile(DIR_NAME, "file1.txt", "111222333");
+		storage.createFile(DIR_NAME, "file2.txt", "");
+		storage.createFile(DIR_NAME, "file3.log", "111");
+		List<File> filesSize = storage.getFiles(DIR_NAME, OrderType.SIZE);
 		assertEquals("file2.txt", filesSize.get(0).getName());
 		assertEquals("file3.log", filesSize.get(1).getName());
 		assertEquals("file1.txt", filesSize.get(2).getName());
 
 		// refresh directory
-		mStorage.deleteDirectory(DIR_NAME);
+		storage.deleteDirectory(DIR_NAME);
 		testCreateDirectory();
 
 		// TEST - Order by NAME
-		mStorage.createFile(DIR_NAME, "bbb.txt", "111222333");
-		mStorage.createFile(DIR_NAME, "ccc.txt", "");
-		mStorage.createFile(DIR_NAME, "aaa.log", "111");
-		List<File> filesName = mStorage.getFiles(DIR_NAME, OrderType.NAME);
+		storage.createFile(DIR_NAME, "bbb.txt", "111222333");
+		storage.createFile(DIR_NAME, "ccc.txt", "");
+		storage.createFile(DIR_NAME, "aaa.log", "111");
+		List<File> filesName = storage.getFiles(DIR_NAME, OrderType.NAME);
 		assertEquals("aaa.log", filesName.get(0).getName());
 		assertEquals("bbb.txt", filesName.get(1).getName());
 		assertEquals("ccc.txt", filesName.get(2).getName());
 
 		// refresh directory
-		mStorage.deleteDirectory(DIR_NAME);
+		storage.deleteDirectory(DIR_NAME);
 		testCreateDirectory();
 
 		// TEST - Order by DATE
-		mStorage.createFile(DIR_NAME, "aaa.txt", "123456789");
+		storage.createFile(DIR_NAME, "aaa.txt", "123456789");
 		sleep(1000);
-		mStorage.createFile(DIR_NAME, "bbb.txt", "123456789");
+		storage.createFile(DIR_NAME, "bbb.txt", "123456789");
 		sleep(1000);
-		mStorage.createFile(DIR_NAME, "ccc.log", "123456789");
+		storage.createFile(DIR_NAME, "ccc.log", "123456789");
 		sleep(1000);
-		mStorage.appendFile(DIR_NAME, "bbb.txt", "some new content");
-		List<File> files = mStorage.getFiles(DIR_NAME, OrderType.DATE);
+		storage.appendFile(DIR_NAME, "bbb.txt", "some new content");
+		List<File> files = storage.getFiles(DIR_NAME, OrderType.DATE);
 		assertEquals("bbb.txt", files.get(0).getName());
 		assertEquals("ccc.log", files.get(1).getName());
 		assertEquals("aaa.txt", files.get(2).getName());

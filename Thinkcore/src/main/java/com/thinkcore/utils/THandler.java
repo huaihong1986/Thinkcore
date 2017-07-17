@@ -26,18 +26,13 @@ import android.os.Handler;
 import android.os.Message;
 
 public abstract class THandler<T> extends Handler { // 弱引用
-	private WeakReference<T> mOwner;
+    private WeakReference<T> mOwner;
 
-	public THandler(T owner) {
-		mOwner = new WeakReference<T>(owner);
-	}
+    public THandler(T owner) {
+        mOwner = new WeakReference<T>(owner);
+    }
 
-	public T getOwner() {
-		return mOwner.get();
-	}
-
-
-	public interface IHandler {
-		void handleMessage(Message msg);
-	}
+    public T getOwner() {
+        return mOwner.get();
+    }
 }

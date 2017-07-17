@@ -6,12 +6,12 @@ package com.thinkcore.utils;
  * 
  */
 public class THanziToPinyin2 {
-	private static THanziToPinyin2 mThis;
+	private static THanziToPinyin2 that;
 
 	public static THanziToPinyin2 getInstance() {
-		if (mThis == null)
-			mThis = new THanziToPinyin2();
-		return mThis;
+		if (that == null)
+			that = new THanziToPinyin2();
+		return that;
 	}
 
 	private static int[] pyvalue = new int[] { -20319, -20317, -20304, -20295,

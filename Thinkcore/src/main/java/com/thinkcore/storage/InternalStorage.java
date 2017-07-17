@@ -16,7 +16,7 @@ import com.thinkcore.storage.TStorage.StorageType;
  * @author Roman Kushnarenko - sromku (sromku@gmail.com)
  */
 public class InternalStorage extends AbstractDiskStorage {
-	private Context mContext;
+	private Context context;
 
 	InternalStorage() {
 		super();
@@ -29,7 +29,7 @@ public class InternalStorage extends AbstractDiskStorage {
 	 * @param context
 	 */
 	void initActivity(Context context) {
-		mContext = context;
+		this.context = context;
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class InternalStorage extends AbstractDiskStorage {
 
 	@Override
 	public boolean createDirectory(String name) {
-		File dir = mContext.getDir(name, Context.MODE_PRIVATE);
+		File dir = context.getDir(name, Context.MODE_PRIVATE);
 		if (dir.exists()) {
 			return true;
 		}
@@ -72,7 +72,7 @@ public class InternalStorage extends AbstractDiskStorage {
 				bytes = encrypt(bytes, Cipher.ENCRYPT_MODE);
 			}
 
-			FileOutputStream fos = mContext.openFileOutput(name, Context.MODE_PRIVATE);
+			FileOutputStream fos = context.openFileOutput(name, Context.MODE_PRIVATE);
 			fos.write(bytes);
 			fos.close();
 			return true;
@@ -93,7 +93,7 @@ public class InternalStorage extends AbstractDiskStorage {
 	 */
 	public byte[] readFile(String name) {
 		try {
-			FileInputStream stream = mContext.openFileInput(name);
+			FileInputStream stream = context.openFileInput(name);
 			byte[] out = readFile(stream);
 			return out;
 		}
@@ -132,7 +132,7 @@ public class InternalStorage extends AbstractDiskStorage {
 	 * @return
 	 */
 	protected String buildPath(String directoryName) {
-		String path = mContext.getDir(directoryName, Context.MODE_PRIVATE).getAbsolutePath();
+		String path = context.getDir(directoryName, Context.MODE_PRIVATE).getAbsolutePath();
 		return path;
 	}
 
@@ -149,7 +149,7 @@ public class InternalStorage extends AbstractDiskStorage {
 	 * @return
 	 */
 	protected String buildPath(String directoryName, String fileName) {
-		String path = mContext.getDir(directoryName, Context.MODE_PRIVATE).getAbsolutePath();
+		String path = context.getDir(directoryName, Context.MODE_PRIVATE).getAbsolutePath();
 		path = path + File.separator + fileName;
 		return path;
 	}

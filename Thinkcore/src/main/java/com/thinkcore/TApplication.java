@@ -17,127 +17,124 @@ import android.content.pm.PackageInfo;
 
 //程序app
 public class TApplication extends Application implements
-		INetChangeListener {
+        INetChangeListener {
 
-	protected static TApplication mThis = null;
+    protected static TApplication that = null;
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		mThis = this;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        that = this;
 
-		TPropertiesConfig.getInstance().initConfig(this);
-		TPreferenceConfig.getInstance().initConfig(this);
-	}
+        TPropertiesConfig.getThat().initConfig(this);
+        TPreferenceConfig.getThat().initConfig(this);
+    }
 
-	@Override
-	public void onTerminate() {
-		onExitApplication();
+    @Override
+    public void onTerminate() {
+        onExitApplication();
+        super.onTerminate();
+    }
 
-		super.onTerminate();
-	}
+    @Override
+    public void onConnect(netType type) {
 
-	@Override
-	public void onConnect(netType type) {
+    }
 
-	}
+    @Override
+    public void onDisConnect() {
 
-	@Override
-	public void onDisConnect() {
+    }
 
-	}
+    public static TApplication getInstance() { // 获取程序实例
+        return that;
+    }
 
-	public static TApplication getInstance() { // 获取程序实例
-		return mThis;
-	}
+    protected void onExitApplication() { // 退出app
+    }
 
-	protected void onExitApplication() { // 退出app
-	}
-
-	/**
-	 * 退出应用程序
-	 *
-	 * @param isBackground
-	 *            是否开开启后台运行
-	 */
-	public void appExit(Boolean isBackground) {
-	}
+    /**
+     * 退出应用程序
+     *
+     * @param isBackground 是否开开启后台运行
+     */
+    public void appExit(Boolean isBackground) {
+    }
 
 
-	public PackageInfo getPackageInfo(int flags) {// getPackageName()是你当前类的包名，0代表是获取版本信息
-		PackageInfo packageInfo = null;
-		try {
-			packageInfo = getPackageManager().getPackageInfo(getPackageName(),
-					flags);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return packageInfo;
-	}
+    public PackageInfo getPackageInfo(int flags) {// getPackageName()是你当前类的包名，0代表是获取版本信息
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = getPackageManager().getPackageInfo(getPackageName(),
+                    flags);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return packageInfo;
+    }
 
-	public static String getResString(int id) {
-		return TApplication.getInstance().getString(id);
-	}
+    public static String getResString(int id) {
+        return TApplication.getInstance().getString(id);
+    }
 
-	public boolean isAppOnForeground() {
-		// Returns a list of application processes that are running on the
-		// device
-		ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-		String packageName = getApplicationContext().getPackageName();
+    public boolean isAppOnForeground() {
+        // Returns a list of application processes that are running on the device
+        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        String packageName = getApplicationContext().getPackageName();
 
-		List<RunningAppProcessInfo> appProcesses = activityManager
-				.getRunningAppProcesses();
-		if (appProcesses == null)
-			return false;
+        List<RunningAppProcessInfo> appProcesses = activityManager
+                .getRunningAppProcesses();
+        if (appProcesses == null)
+            return false;
 
-		for (RunningAppProcessInfo appProcess : appProcesses) {
-			// The name of the process that this object is associated with.
-			if (appProcess.processName.equals(packageName)
-					&& appProcess.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-				return true;
-			}
-		}
-		return false;
-	}
+        for (RunningAppProcessInfo appProcess : appProcesses) {
+            // The name of the process that this object is associated with.
+            if (appProcess.processName.equals(packageName)
+                    && appProcess.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	/**
-	 * 需要权限:android.permission.GET_TASKS
-	 *
-	 * @return
-	 */
-	public boolean isApplicationBroughtToBackground() {
-		ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-		List<RunningTaskInfo> tasks = am.getRunningTasks(1);
-		if (tasks != null && !tasks.isEmpty()) {
-			ComponentName topActivity = tasks.get(0).topActivity;
-			if (!topActivity.getPackageName().equals(getPackageName())) {
-				return true;
-			}
-		}
-		return false;
-	}
+    /**
+     * 需要权限:android.permission.GET_TASKS
+     *
+     * @return
+     */
+    public boolean isApplicationBroughtToBackground() {
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        List<RunningTaskInfo> tasks = am.getRunningTasks(1);
+        if (tasks != null && !tasks.isEmpty()) {
+            ComponentName topActivity = tasks.get(0).topActivity;
+            if (!topActivity.getPackageName().equals(getPackageName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public boolean isProcess(String name) {
-		String processName = getProcessName();
-		if (processName.endsWith(name)) {
-			return true;
-		}
+    public boolean isProcess(String name) {
+        String processName = getProcessName();
+        if (processName.endsWith(name)) {
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	public String getProcessName() {
-		ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-		List<RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
-		if (runningApps == null) {
-			return null;
-		}
-		for (RunningAppProcessInfo procInfo : runningApps) {
-			if (procInfo.pid == android.os.Process.myPid()) {
-				return procInfo.processName;
-			}
-		}
-		return null;
-	}
+    public String getProcessName() {
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        List<RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
+        if (runningApps == null) {
+            return null;
+        }
+        for (RunningAppProcessInfo procInfo : runningApps) {
+            if (procInfo.pid == android.os.Process.myPid()) {
+                return procInfo.processName;
+            }
+        }
+        return null;
+    }
 
 }

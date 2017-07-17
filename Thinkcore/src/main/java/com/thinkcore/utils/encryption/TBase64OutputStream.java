@@ -130,4 +130,10 @@ public class TBase64OutputStream extends FilterOutputStream {
             return b;
         }
     }
+
+    class TBase64DataException extends IOException {
+        public TBase64DataException(String detailMessage) {
+            super(detailMessage);
+        }
+    }
 }

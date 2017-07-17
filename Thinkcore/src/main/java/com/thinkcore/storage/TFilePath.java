@@ -27,35 +27,35 @@ public class TFilePath {
     public static final String PATH_CACHE = "cache";
     public static final String PATH_SPLIT = File.separator;
 
-    protected String mAppName = "";
+    protected String appName = "";
 
     public TFilePath() {
-        mAppName = TApplication.getInstance().getApplicationContext()
+        appName = TApplication.getInstance().getApplicationContext()
                 .getPackageName();
 
         boolean result = false;
         if (!getExternalStorage().isDirectoryExists(getExternalAppDir()))
-            result = getExternalStorage().createDirectory(mAppName);
+            result = getExternalStorage().createDirectory(appName);
 
         if (!getExternalStorage().isDirectoryExists(getExternalImageDir()))
             result = getExternalStorage().createDirectory(
-                    mAppName + PATH_SPLIT + PATH_IMAGE);
+                    appName + PATH_SPLIT + PATH_IMAGE);
 
         if (!getExternalStorage().isDirectoryExists(getExternalAudioDir()))
             result = getExternalStorage().createDirectory(
-                    mAppName + PATH_SPLIT + PATH_AUDIO);
+                    appName + PATH_SPLIT + PATH_AUDIO);
 
         if (!getExternalStorage().isDirectoryExists(getExternalVideoDir()))
             result = getExternalStorage().createDirectory(
-                    mAppName + PATH_SPLIT + PATH_VIDEO);
+                    appName + PATH_SPLIT + PATH_VIDEO);
 
         if (!getExternalStorage().isDirectoryExists(getExternalDownloadDir()))
             result = getExternalStorage().createDirectory(
-                    mAppName + PATH_SPLIT + PATH_DOWNLOAD);
+                    appName + PATH_SPLIT + PATH_DOWNLOAD);
 
         if (!getExternalStorage().isDirectoryExists(getExternalCacheDir()))
             result = getExternalStorage().createDirectory(
-                    mAppName + PATH_SPLIT + PATH_CACHE);
+                    appName + PATH_SPLIT + PATH_CACHE);
 
         result = getInternalStorage().createDirectory(PATH_IMAGE);
         result = getInternalStorage().createDirectory(PATH_AUDIO);
@@ -74,7 +74,7 @@ public class TFilePath {
     }
 
     public String getImageDirName() {
-        return mAppName + PATH_SPLIT + PATH_IMAGE + PATH_SPLIT;
+        return appName + PATH_SPLIT + PATH_IMAGE + PATH_SPLIT;
     }
 
     public String getInterImageDir() {
@@ -86,7 +86,7 @@ public class TFilePath {
     }
 
     // public String getIndividualDir() {
-    // return mAppName + PATH_SPLIT + PATH_IMAGE_INDIVIDUAL;
+    // return appName + PATH_SPLIT + PATH_IMAGE_INDIVIDUAL;
     // }
     //
     // public String getExternalIndividualDir() {
@@ -94,7 +94,7 @@ public class TFilePath {
     // }
 
     public String getAudioDirName() {
-        return mAppName + PATH_SPLIT + PATH_AUDIO + PATH_SPLIT;
+        return appName + PATH_SPLIT + PATH_AUDIO + PATH_SPLIT;
     }
 
     public String getInterAudioDir() {
@@ -106,7 +106,7 @@ public class TFilePath {
     }
 
     public String getVideoDirName() {
-        return mAppName + PATH_SPLIT + PATH_VIDEO + PATH_SPLIT;
+        return appName + PATH_SPLIT + PATH_VIDEO + PATH_SPLIT;
     }
 
     public String getInterVideoDir() {
@@ -118,7 +118,7 @@ public class TFilePath {
     }
 
     public String getDownloadDirName() {
-        return mAppName + PATH_SPLIT + PATH_DOWNLOAD + PATH_SPLIT;
+        return appName + PATH_SPLIT + PATH_DOWNLOAD + PATH_SPLIT;
     }
 
     public String getInterDownloadDir() {
@@ -130,7 +130,7 @@ public class TFilePath {
     }
 
     public String getCacheDirName() {
-        return mAppName + PATH_SPLIT + PATH_CACHE + PATH_SPLIT;
+        return appName + PATH_SPLIT + PATH_CACHE + PATH_SPLIT;
     }
 
     public String getInterCacheDir() {
@@ -152,7 +152,7 @@ public class TFilePath {
 
     public String getExternalAppDir() {
         return TStorage.getInstance().getExternalStorage().getPath()
-                + PATH_SPLIT + mAppName;
+                + PATH_SPLIT + appName;
     }
 
     // 以下是关键，原本uri返回的是file:///...来着的，android4.4返回的是content:///...

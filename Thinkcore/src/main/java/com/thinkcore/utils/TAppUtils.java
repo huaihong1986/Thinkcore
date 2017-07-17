@@ -33,23 +33,6 @@ public class TAppUtils {
 	}
 
 	/**
-	 * @Description 判断是否是顶部activity
-	 * @param context
-	 * @param activityName
-	 * @return
-	 */
-	public static boolean isTopActivy(Context context, String activityName) {
-		ActivityManager am = (ActivityManager) context
-				.getSystemService(Context.ACTIVITY_SERVICE);
-		ComponentName cName = am.getRunningTasks(1).size() > 0 ? am
-				.getRunningTasks(1).get(0).topActivity : null;
-
-		if (null == cName)
-			return false;
-		return cName.getClassName().equals(activityName);
-	}
-
-	/**
 	 * 判断当前应用程序是否后台运行 在android5.0以上失效！请使用isApplicationBackground()方法代替！
 	 * 
 	 * @param context

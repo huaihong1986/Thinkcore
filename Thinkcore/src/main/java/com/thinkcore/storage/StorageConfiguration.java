@@ -51,16 +51,16 @@ public class StorageConfiguration {
 	/**
 	 * The best chunk size: <i>http://stackoverflow.com/a/237495/334522</i>
 	 */
-	private int mChunkSize;
-	private boolean mIsEncrypted;
-	private byte[] mIvParameter;
-	private byte[] mSecretKey;
+	private int chunkSize;
+	private boolean isEncrypted;
+	private byte[] ivParameter;
+	private byte[] secretKey;
 
 	private StorageConfiguration(Builder builder) {
-		mChunkSize = builder._chunkSize;
-		mIsEncrypted = builder._isEncrypted;
-		mIvParameter = builder._ivParameter;
-		mSecretKey = builder._secretKey;
+		this.chunkSize = builder._chunkSize;
+		this.isEncrypted = builder._isEncrypted;
+		this.ivParameter = builder._ivParameter;
+		this.secretKey = builder._secretKey;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class StorageConfiguration {
 	 * @return The chunk size
 	 */
 	public int getChuckSize() {
-		return mChunkSize;
+		return chunkSize;
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class StorageConfiguration {
 	 *      cipher mode of operation</a>
 	 */
 	public boolean isEncrypted() {
-		return mIsEncrypted;
+		return isEncrypted;
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class StorageConfiguration {
 	 * @return
 	 */
 	public byte[] getSecretKey() {
-		return mSecretKey;
+		return secretKey;
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class StorageConfiguration {
 	 * @return
 	 */
 	public byte[] getIvParameter() {
-		return mIvParameter;
+		return ivParameter;
 	}
 
 	/**
