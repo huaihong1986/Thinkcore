@@ -1,9 +1,6 @@
 package com.testcore;
 
 import android.content.Context;
-
-import com.morgoo.droidplugin.PluginHelper;
-import com.morgoo.droidplugin.pm.PluginManager;
 import com.thinkcore.TApplication;
 import com.thinkcore.crash.HttpReportSenderFactory;
 import com.thinkcore.storage.TFilePath;
@@ -27,7 +24,6 @@ public class MyApp extends TApplication {
     public void onCreate() {
         super.onCreate();
         ACRA.init(this);
-        PluginHelper.getInstance().applicationOnCreate(getBaseContext());
 
         TLog.enablePrintToFileLogger(true);
         TFilePath filePath = new TFilePath();
@@ -56,7 +52,6 @@ public class MyApp extends TApplication {
 
     @Override
     protected void attachBaseContext(Context base) {
-        PluginHelper.getInstance().applicationAttachBaseContext(base);
         super.attachBaseContext(base);
     }
 }

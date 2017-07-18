@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.thinkcore.utils.config.TPreferenceConfig;
 import com.thinkcore.utils.config.TPropertiesConfig;
+import com.thinkcore.utils.log.TLog;
 import com.thinkcore.utils.network.INetChangeListener;
 import com.thinkcore.utils.network.TNetWorkUtil.netType;
 
@@ -26,8 +27,8 @@ public class TApplication extends Application implements
         super.onCreate();
         that = this;
 
-        TPropertiesConfig.getThat().initConfig(this);
-        TPreferenceConfig.getThat().initConfig(this);
+        TPropertiesConfig.getInstance().initConfig(this);
+        TPreferenceConfig.getInstance().initConfig(this);
     }
 
     @Override

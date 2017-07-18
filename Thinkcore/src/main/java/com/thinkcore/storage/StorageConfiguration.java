@@ -13,6 +13,8 @@ import javax.crypto.spec.PBEKeySpec;
 import android.os.Build;
 import android.util.Log;
 
+import com.thinkcore.utils.log.TLog;
+
 /**
  * Each of the specific storage types (like External storage tool) need its own
  * configurations. This configuration class is build and used in the storage
@@ -187,7 +189,7 @@ public class StorageConfiguration {
 				_ivParameter = ivx.getBytes(UTF_8);
 			}
 			catch (UnsupportedEncodingException e) {
-				Log.e("SimpleStorageConfiguration", "UnsupportedEncodingException", e);
+				TLog.e("SimpleStorageConfiguration", "UnsupportedEncodingException", e);
 			}
 
 			// Set secret key
@@ -225,10 +227,10 @@ public class StorageConfiguration {
 
 			}
 			catch (InvalidKeySpecException e) {
-				Log.e("SimpleStorageConfiguration", "InvalidKeySpecException", e);
+				TLog.e("SimpleStorageConfiguration", "InvalidKeySpecException", e);
 			}
 			catch (NoSuchAlgorithmException e) {
-				Log.e("SimpleStorageConfiguration", "NoSuchAlgorithmException", e);
+				TLog.e("SimpleStorageConfiguration", "NoSuchAlgorithmException", e);
 			}
 
 			return this;

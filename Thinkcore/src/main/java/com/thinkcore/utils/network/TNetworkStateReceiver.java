@@ -37,7 +37,7 @@ public class TNetworkStateReceiver extends BroadcastReceiver {
     private static TNetworkStateReceiver that;
     private Context context;
 
-    public static TNetworkStateReceiver getThat() {
+    public static TNetworkStateReceiver getInstance() {
         if (that == null) {
             that = new TNetworkStateReceiver();
         }
@@ -79,7 +79,7 @@ public class TNetworkStateReceiver extends BroadcastReceiver {
         filter.addAction(TA_ANDROID_NET_CHANGE_ACTION);
         filter.addAction(ANDROID_NET_CHANGE_ACTION);
         context.getApplicationContext()
-                .registerReceiver(getThat(), filter);
+                .registerReceiver(getInstance(), filter);
     }
 
     /**

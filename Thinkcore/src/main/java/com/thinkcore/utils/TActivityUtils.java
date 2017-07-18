@@ -229,6 +229,22 @@ public class TActivityUtils {
         }
     }
 
+    public static void jumpToSystemLocPickImageActivity(TActivity activity,
+                                                        IActivityResult iActivityResult) {
+        Random random = new Random();
+        int resultId = random.nextInt(10000);
+        activity.getIActivityResult().put(resultId, iActivityResult);
+        jumpToSystemLocPickImageActivity(activity, iActivityResult);
+    }
+
+    public static void jumpToSystemLocPickImageActivity(TAppActivity activity,
+                                                        IActivityResult iActivityResult) {
+        Random random = new Random();
+        int resultId = random.nextInt(10000);
+        activity.getIActivityResult().put(resultId, iActivityResult);
+        jumpToSystemLocPickImageActivity(activity, iActivityResult);
+    }
+
     public static void jumpToSystemLocPickImageActivity(Activity activity,
                                                         int requestCode) {
         Intent intent = null;
@@ -236,6 +252,22 @@ public class TActivityUtils {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         activity.startActivityForResult(intent, requestCode);
+    }
+
+    public static void jumpToSystemCameraPickImageActivity(TActivity activity,
+                                                           IActivityResult iActivityResult) {
+        Random random = new Random();
+        int resultId = random.nextInt(10000);
+        activity.getIActivityResult().put(resultId, iActivityResult);
+        jumpToSystemCameraPickImageActivity(activity, iActivityResult);
+    }
+
+    public static void jumpToSystemCameraPickImageActivity(TAppActivity activity,
+                                                           IActivityResult iActivityResult) {
+        Random random = new Random();
+        int resultId = random.nextInt(10000);
+        activity.getIActivityResult().put(resultId, iActivityResult);
+        jumpToSystemCameraPickImageActivity(activity, iActivityResult);
     }
 
     public static void jumpToSystemCameraPickImageActivity(Activity activity,

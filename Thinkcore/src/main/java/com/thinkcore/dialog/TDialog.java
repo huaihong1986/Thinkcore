@@ -6,8 +6,6 @@ import android.content.Context;
 class TDialog extends ProgressDialog {
     private Context mContext;
 
-    // private Dialog mDialog;
-
     public TDialog(Context context) {
         super(context);
         mContext = context;

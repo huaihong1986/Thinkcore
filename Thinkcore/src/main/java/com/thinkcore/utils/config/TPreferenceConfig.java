@@ -49,7 +49,7 @@ public class TPreferenceConfig implements TIConfig{
 	 *
 	 * @return
 	 */
-	public static TPreferenceConfig getThat() {
+	public static TPreferenceConfig getInstance() {
 		if (that == null) {
 			that = new TPreferenceConfig();
 		}

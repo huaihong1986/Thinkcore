@@ -45,7 +45,7 @@ public class TPropertiesConfig implements TIConfig {
      *
      * @return
      */
-    public static TPropertiesConfig getThat() {
+    public static TPropertiesConfig getInstance() {
         if (that == null) {
             that = new TPropertiesConfig();
         }

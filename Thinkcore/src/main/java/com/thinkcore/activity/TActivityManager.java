@@ -6,8 +6,7 @@ import android.app.Activity;
 //程序管理
 public class TActivityManager {
 	private static Stack<Activity> mActivityStack = new Stack<Activity>();// 进行Activity运行记录
-	private static TActivityManager mThis;
-
+	private static TActivityManager mThat;
 	protected TActivity mCurrentActivity; // 当前activity
 
 	private TActivityManager() {
@@ -17,10 +16,10 @@ public class TActivityManager {
 	 * 单一实例
 	 */
 	public static TActivityManager getInstance() {
-		if (mThis == null) {
-			mThis = new TActivityManager();
+		if (mThat == null) {
+			mThat = new TActivityManager();
 		}
-		return mThis;
+		return mThat;
 	}
 
 	public int getSizeOfActivityStack() {
