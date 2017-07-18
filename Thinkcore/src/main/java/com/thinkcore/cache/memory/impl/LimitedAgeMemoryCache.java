@@ -15,8 +15,6 @@
  *******************************************************************************/
 package com.thinkcore.cache.memory.impl;
 
-import android.graphics.Bitmap;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -55,7 +53,7 @@ public class LimitedAgeMemoryCache implements MemoryCache {
 	}
 
 	@Override
-	public boolean put(String key, Bitmap value) {
+	public boolean put(String key, Object value) {
 		boolean putSuccesfully = cache.put(key, value);
 		if (putSuccesfully) {
 			loadingDates.put(key, System.currentTimeMillis());
@@ -64,7 +62,7 @@ public class LimitedAgeMemoryCache implements MemoryCache {
 	}
 
 	@Override
-	public Bitmap get(String key) {
+	public Object get(String key) {
 		Long loadingDate = loadingDates.get(key);
 		if (loadingDate != null
 				&& System.currentTimeMillis() - loadingDate > maxAge) {
@@ -76,7 +74,7 @@ public class LimitedAgeMemoryCache implements MemoryCache {
 	}
 
 	@Override
-	public Bitmap remove(String key) {
+	public Object remove(String key) {
 		loadingDates.remove(key);
 		return cache.remove(key);
 	}

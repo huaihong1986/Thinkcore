@@ -24,6 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.thinkcore.cache.memory.LimitedMemoryCache;
+import com.thinkcore.utils.TMemoryUtils;
 
 /**
  * Limited {@link Bitmap bitmap} cache. Provides {@link Bitmap bitmaps} storing.
@@ -33,60 +34,60 @@ import com.thinkcore.cache.memory.LimitedMemoryCache;
  * <b>NOTE:</b> This cache uses strong and weak references for stored Bitmaps.
  * Strong references - for limited count of Bitmaps (depends on cache size),
  * weak references - for all other cached Bitmaps.
- * 
+ *
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  * @since 1.0.0
  */
 public class FIFOLimitedMemoryCache extends LimitedMemoryCache {
 
-	private final List<Bitmap> queue = Collections
-			.synchronizedList(new LinkedList<Bitmap>());
+    private final List<Object> queue = Collections
+            .synchronizedList(new LinkedList<Object>());
 
-	public FIFOLimitedMemoryCache(int sizeLimit) {
-		super(sizeLimit);
-	}
+    public FIFOLimitedMemoryCache(int sizeLimit) {
+        super(sizeLimit);
+    }
 
-	@Override
-	public boolean put(String key, Bitmap value) {
-		if (super.put(key, value)) {
-			queue.add(value);
-			return true;
-		} else {
-			return false;
-		}
-	}
+    @Override
+    public boolean put(String key, Object value) {
+        if (super.put(key, value)) {
+            queue.add(value);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	@Override
-	public Bitmap remove(String key) {
-		Bitmap value = super.get(key);
-		if (value != null) {
-			queue.remove(value);
-		}
-		return super.remove(key);
-	}
+    @Override
+    public Object remove(String key) {
+        Object value = super.get(key);
+        if (value != null) {
+            queue.remove(value);
+        }
+        return super.remove(key);
+    }
 
-	@Override
-	public void clear() {
-		queue.clear();
-		super.clear();
-	}
+    @Override
+    public void clear() {
+        queue.clear();
+        super.clear();
+    }
 
-	@Override
-	protected int getSize(Bitmap value) {
-		return value.getRowBytes() * value.getHeight();
-	}
+    @Override
+    protected int getSize(Object value) {
+        return TMemoryUtils.toByteArray(value).length;
+    }
 
-	@Override
-	protected Bitmap removeNext() {
-		return queue.remove(0);
-	}
+    @Override
+    protected Object removeNext() {
+        return queue.remove(0);
+    }
 
-	@Override
-	protected Reference<Bitmap> createReference(Bitmap value) {
-		return new WeakReference<Bitmap>(value);
-	}
+    @Override
+    protected Reference<Object> createReference(Object value) {
+        return new WeakReference<Object>(value);
+    }
 
-	public int getLength() {
-		return queue.size();
-	}
+    public int getLength() {
+        return queue.size();
+    }
 }

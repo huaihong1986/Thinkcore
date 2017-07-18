@@ -51,8 +51,8 @@ public abstract class LimitedMemoryCache extends BaseMemoryCache {
 	 * (but it continue exist at {@link #softMap} and can be collected by GC at
 	 * any time)
 	 */
-	private final List<Bitmap> hardCache = Collections
-			.synchronizedList(new LinkedList<Bitmap>());
+	private final List<Object> hardCache = Collections
+			.synchronizedList(new LinkedList<Object>());
 
 	/**
 	 * @param sizeLimit
@@ -69,7 +69,7 @@ public abstract class LimitedMemoryCache extends BaseMemoryCache {
 	}
 
 	@Override
-	public boolean put(String key, Bitmap value) {
+	public boolean put(String key, Object value) {
 		boolean putSuccessfully = false;
 		// Try to add value to hard cache
 		int valueSize = getSize(value);
@@ -77,7 +77,7 @@ public abstract class LimitedMemoryCache extends BaseMemoryCache {
 		int curCacheSize = cacheSize.get();
 		if (valueSize < sizeLimit) {
 			while (curCacheSize + valueSize > sizeLimit) {
-				Bitmap removedValue = removeNext();
+				Object removedValue = removeNext();
 				if (hardCache.remove(removedValue)) {
 					curCacheSize = cacheSize.addAndGet(-getSize(removedValue));
 				}
@@ -93,8 +93,8 @@ public abstract class LimitedMemoryCache extends BaseMemoryCache {
 	}
 
 	@Override
-	public Bitmap remove(String key) {
-		Bitmap value = super.get(key);
+	public Object remove(String key) {
+		Object value = super.get(key);
 		if (value != null) {
 			if (hardCache.remove(value)) {
 				cacheSize.addAndGet(-getSize(value));
@@ -114,7 +114,7 @@ public abstract class LimitedMemoryCache extends BaseMemoryCache {
 		return sizeLimit;
 	}
 
-	protected abstract int getSize(Bitmap value);
+	protected abstract int getSize(Object value);
 
-	protected abstract Bitmap removeNext();
+	protected abstract Object removeNext();
 }

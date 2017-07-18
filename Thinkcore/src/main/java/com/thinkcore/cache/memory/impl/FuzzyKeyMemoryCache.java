@@ -15,8 +15,6 @@
  *******************************************************************************/
 package com.thinkcore.cache.memory.impl;
 
-import android.graphics.Bitmap;
-
 import java.util.Collection;
 import java.util.Comparator;
 
@@ -45,7 +43,7 @@ public class FuzzyKeyMemoryCache implements MemoryCache {
 	}
 
 	@Override
-	public boolean put(String key, Bitmap value) {
+	public boolean put(String key, Object value) {
 		// Search equal key and remove this entry
 		synchronized (cache) {
 			String keyToRemove = null;
@@ -63,12 +61,12 @@ public class FuzzyKeyMemoryCache implements MemoryCache {
 	}
 
 	@Override
-	public Bitmap get(String key) {
+	public Object get(String key) {
 		return cache.get(key);
 	}
 
 	@Override
-	public Bitmap remove(String key) {
+	public Object remove(String key) {
 		return cache.remove(key);
 	}
 

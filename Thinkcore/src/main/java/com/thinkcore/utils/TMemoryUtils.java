@@ -17,8 +17,12 @@
 package com.thinkcore.utils;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import com.thinkcore.utils.log.TLog;
 
@@ -30,57 +34,103 @@ import android.os.Debug;
  * 内存信息
  */
 public class TMemoryUtils {
-	private static final String TAG = TMemoryUtils.class.getSimpleName();
+    private static final String TAG = TMemoryUtils.class.getSimpleName();
 
-	/**
-	 * 设备的总内存
-	 */
-	public static long getTotalMemory() {
-		String memInfoPath = "/proc/meminfo";
-		String readTemp = "";
-		String memTotal = "";
-		long memory = 0;
-		try {
-			FileReader fr = new FileReader(memInfoPath);
-			BufferedReader localBufferedReader = new BufferedReader(fr, 8192);
-			while ((readTemp = localBufferedReader.readLine()) != null) {
-				if (readTemp.contains("MemTotal")) {
-					String[] total = readTemp.split(":");
-					memTotal = total[1].trim();
-				}
-			}
-			localBufferedReader.close();
-			String[] memKb = memTotal.split(" ");
-			memTotal = memKb[0].trim();
-			TLog.d(TAG, "memTotal: " + memTotal);
-			memory = Long.parseLong(memTotal);
-		} catch (IOException e) {
-			TLog.e(TAG, "IOException: " + e.getMessage());
-		}
-		return memory;
-	}
+    /**
+     * 设备的总内存
+     */
+    public static long getTotalMemory() {
+        String memInfoPath = "/proc/meminfo";
+        String readTemp = "";
+        String memTotal = "";
+        long memory = 0;
+        try {
+            FileReader fr = new FileReader(memInfoPath);
+            BufferedReader localBufferedReader = new BufferedReader(fr, 8192);
+            while ((readTemp = localBufferedReader.readLine()) != null) {
+                if (readTemp.contains("MemTotal")) {
+                    String[] total = readTemp.split(":");
+                    memTotal = total[1].trim();
+                }
+            }
+            localBufferedReader.close();
+            String[] memKb = memTotal.split(" ");
+            memTotal = memKb[0].trim();
+            TLog.d(TAG, "memTotal: " + memTotal);
+            memory = Long.parseLong(memTotal);
+        } catch (IOException e) {
+            TLog.e(TAG, "IOException: " + e.getMessage());
+        }
+        return memory;
+    }
 
-	// 获取可用内存
-	public static long getFreeMemorySize(Context context) {
-		ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();
-		ActivityManager am = (ActivityManager) context
-				.getSystemService(Context.ACTIVITY_SERVICE);
-		am.getMemoryInfo(outInfo);
-		long avaliMem = outInfo.availMem;
-		return avaliMem / 1024;
-	}
+    // 获取可用内存
+    public static long getFreeMemorySize(Context context) {
+        ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();
+        ActivityManager am = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        am.getMemoryInfo(outInfo);
+        long avaliMem = outInfo.availMem;
+        return avaliMem / 1024;
+    }
 
-	// 获取指定进程内存
-	public static int getPidMemorySize(int pid, Context context) {
-		ActivityManager am = (ActivityManager) context
-				.getSystemService(Context.ACTIVITY_SERVICE);
-		int[] myMempid = new int[] { pid };
-		Debug.MemoryInfo[] memoryInfo = am.getProcessMemoryInfo(myMempid);
-		memoryInfo[0].getTotalSharedDirty();
+    // 获取指定进程内存
+    public static int getPidMemorySize(int pid, Context context) {
+        ActivityManager am = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        int[] myMempid = new int[]{pid};
+        Debug.MemoryInfo[] memoryInfo = am.getProcessMemoryInfo(myMempid);
+        memoryInfo[0].getTotalSharedDirty();
 
-		// int memSize = memoryInfo[0].dalvikPrivateDirty;
-		int memSize = memoryInfo[0].getTotalPss();
-		// int memSize = memoryInfo[0].getTotalPrivateDirty();
-		return memSize;
-	}
+        // int memSize = memoryInfo[0].dalvikPrivateDirty;
+        int memSize = memoryInfo[0].getTotalPss();
+        // int memSize = memoryInfo[0].getTotalPrivateDirty();
+        return memSize;
+    }
+
+    //
+
+    /**
+     * 对象转数组
+     *
+     * @param obj
+     * @return
+     */
+    public static  byte[] toByteArray(Object obj) {
+        byte[] bytes = null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(obj);
+            oos.flush();
+            bytes = bos.toByteArray();
+            oos.close();
+            bos.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return bytes;
+    }
+
+    /**
+     * 数组转对象
+     *
+     * @param bytes
+     * @return
+     */
+    public static Object toObject(byte[] bytes) {
+        Object obj = null;
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            obj = ois.readObject();
+            ois.close();
+            bis.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return obj;
+    }
 }

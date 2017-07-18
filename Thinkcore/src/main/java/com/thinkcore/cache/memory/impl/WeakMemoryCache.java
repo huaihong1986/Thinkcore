@@ -15,24 +15,22 @@
  *******************************************************************************/
 package com.thinkcore.cache.memory.impl;
 
-import android.graphics.Bitmap;
-
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 
 import com.thinkcore.cache.memory.BaseMemoryCache;
 
 /**
- * Memory cache with {@linkplain WeakReference weak references} to {@linkplain Bitmap bitmaps}<br />
+ * Memory cache with {@linkplain WeakReference weak references} to {@linkplain Object Objects}<br />
  * <br />
- * <b>NOTE:</b> This cache uses only weak references for stored Bitmaps.
+ * <b>NOTE:</b> This cache uses only weak references for stored Objects.
  *
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  * @since 1.5.3
  */
 public class WeakMemoryCache extends BaseMemoryCache {
 	@Override
-	protected Reference<Bitmap> createReference(Bitmap value) {
-		return new WeakReference<Bitmap>(value);
+	protected Reference<Object> createReference(Object value) {
+		return new WeakReference<Object>(value);
 	}
 }

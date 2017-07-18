@@ -30,13 +30,13 @@ import java.util.*;
 public abstract class BaseMemoryCache implements MemoryCache {
 
 	/** Stores not strong references to objects */
-	private final Map<String, Reference<Bitmap>> softMap = Collections
-			.synchronizedMap(new HashMap<String, Reference<Bitmap>>());
+	private final Map<String, Reference<Object>> softMap = Collections
+			.synchronizedMap(new HashMap<String, Reference<Object>>());
 
 	@Override
-	public Bitmap get(String key) {
-		Bitmap result = null;
-		Reference<Bitmap> reference = softMap.get(key);
+	public Object get(String key) {
+		Object result = null;
+		Reference<Object> reference = softMap.get(key);
 		if (reference != null) {
 			result = reference.get();
 		}
@@ -44,14 +44,14 @@ public abstract class BaseMemoryCache implements MemoryCache {
 	}
 
 	@Override
-	public boolean put(String key, Bitmap value) {
+	public boolean put(String key, Object value) {
 		softMap.put(key, createReference(value));
 		return true;
 	}
 
 	@Override
-	public Bitmap remove(String key) {
-		Reference<Bitmap> bmpRef = softMap.remove(key);
+	public Object remove(String key) {
+		Reference<Object> bmpRef = softMap.remove(key);
 		return bmpRef == null ? null : bmpRef.get();
 	}
 
@@ -72,5 +72,5 @@ public abstract class BaseMemoryCache implements MemoryCache {
 	}
 
 	/** Creates {@linkplain Reference not strong} reference of value */
-	protected abstract Reference<Bitmap> createReference(Bitmap value);
+	protected abstract Reference<Object> createReference(Object value);
 }
