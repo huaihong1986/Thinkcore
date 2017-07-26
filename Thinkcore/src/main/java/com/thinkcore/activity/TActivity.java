@@ -3,18 +3,14 @@ package com.thinkcore.activity;
 import java.util.HashMap;
 
 import com.thinkcore.TApplication;
-import com.thinkcore.dialog.TDialogManager;
+import com.thinkcore.dialog.progress.TDialogManager;
 import com.thinkcore.utils.TActivityUtils;
 import com.thinkcore.utils.TToastUtils;
 import com.thinkcore.view.autolayout.AutoLayoutActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.View;
-import android.view.ViewGroup;
 
 
 //界面

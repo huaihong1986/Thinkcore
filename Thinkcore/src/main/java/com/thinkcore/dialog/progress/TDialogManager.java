@@ -1,4 +1,4 @@
-package com.thinkcore.dialog;
+package com.thinkcore.dialog.progress;
 
 import java.util.LinkedList;
 
