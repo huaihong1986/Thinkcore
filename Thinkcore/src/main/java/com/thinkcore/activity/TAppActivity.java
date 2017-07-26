@@ -12,13 +12,13 @@ import com.thinkcore.TApplication;
 import com.thinkcore.dialog.TDialogManager;
 import com.thinkcore.utils.TActivityUtils;
 import com.thinkcore.utils.TToastUtils;
-import com.thinkcore.view.autolayout.AutoLayout;
 import com.thinkcore.view.autolayout.AutoLayoutActivity;
 
 import java.util.HashMap;
 
 //界面
-public abstract class TAppActivity extends AppCompatActivity {
+//PreferenceActivity/FragmentActivity
+public abstract class TAppActivity extends AutoLayoutActivity {
     private String TAG = TAppActivity.class.getCanonicalName();
 
     public enum Status {
@@ -77,44 +77,14 @@ public abstract class TAppActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-//    @Override
-//    public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
-//        View view = AutoLayoutActivity.onCreateView(name, context, attrs);
-//        if (view != null) return view;
-//        return super.onCreateView(parent, name, context, attrs);
-//    }
-
-    @Override
-    public View onCreateView(String name, Context context, AttributeSet attrs) {
-        View view = AutoLayoutActivity.onCreateView(name, context, attrs);
-        if (view != null) return view;
-        return super.onCreateView(name, context, attrs);
-    }
-
-    @Override
-    public void setContentView(int layoutResID) {
-        super.setContentView(layoutResID);
-        AutoLayout.getInstance().auto(this);
-    }
-
-    @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
-        AutoLayout.getInstance().auto(this);
-    }
-
-    @Override
-    public void setContentView(View view, ViewGroup.LayoutParams params) {
-        super.setContentView(view, params);
-        AutoLayout.getInstance().auto(this);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         TActivityUtils.IActivityResult iActivityResult = mIActivityResult.get(requestCode);
-        if (iActivityResult != null)
+        if (iActivityResult != null) {
             iActivityResult.onActivityResult(resultCode, data);
+            mIActivityResult.remove(requestCode);
+        }
     }
 
     public Status getStatus() {

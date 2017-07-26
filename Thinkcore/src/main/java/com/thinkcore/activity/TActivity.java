@@ -1,15 +1,11 @@
 package com.thinkcore.activity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 import com.thinkcore.TApplication;
 import com.thinkcore.dialog.TDialogManager;
-import com.thinkcore.event.TEvent;
 import com.thinkcore.utils.TActivityUtils;
 import com.thinkcore.utils.TToastUtils;
-import com.thinkcore.view.autolayout.AutoLayout;
 import com.thinkcore.view.autolayout.AutoLayoutActivity;
 
 import android.app.Activity;
@@ -22,7 +18,7 @@ import android.view.ViewGroup;
 
 
 //界面
-public abstract class TActivity extends Activity {
+public abstract class TActivity extends AutoLayoutActivity {
     private String TAG = TActivity.class.getCanonicalName();
 
     public enum Status {
@@ -84,36 +80,13 @@ public abstract class TActivity extends Activity {
     }
 
     @Override
-    public View onCreateView(String name, Context context, AttributeSet attrs) {
-        View view = AutoLayoutActivity.onCreateView(name, context, attrs);
-        if (view != null) return view;
-        return super.onCreateView(name, context, attrs);
-    }
-
-    @Override
-    public void setContentView(int layoutResID) {
-        super.setContentView(layoutResID);
-        AutoLayout.getInstance().auto(this);
-    }
-
-    @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
-        AutoLayout.getInstance().auto(this);
-    }
-
-    @Override
-    public void setContentView(View view, ViewGroup.LayoutParams params) {
-        super.setContentView(view, params);
-        AutoLayout.getInstance().auto(this);
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         TActivityUtils.IActivityResult iActivityResult = mIActivityResult.get(requestCode);
-        if (iActivityResult != null)
+        if (iActivityResult != null) {
             iActivityResult.onActivityResult(resultCode, data);
+            mIActivityResult.remove(requestCode);
+        }
     }
 
     public Status getStatus() {
