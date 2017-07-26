@@ -31,11 +31,4 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.3.1'
-    //RxJava
-    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    //rxpermissions
-    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
-    //eventBus
-    compile 'org.greenrobot:eventbus:3.0.0'
 }
