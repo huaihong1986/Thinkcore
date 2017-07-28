@@ -6,7 +6,7 @@ import com.thinkcore.TApplication;
 import com.thinkcore.dialog.progress.TDialogManager;
 import com.thinkcore.utils.TActivityUtils;
 import com.thinkcore.utils.TToastUtils;
-import com.thinkcore.view.autolayout.AutoLayoutActivity;
+import com.zhy.autolayout.AutoLayoutActivity;
 
 import android.content.Context;
 import android.content.Intent;

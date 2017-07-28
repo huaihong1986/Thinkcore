@@ -1,6 +1,8 @@
 package com.testcore;
 
 import android.content.Context;
+import android.support.multidex.MultiDex;
+
 import com.thinkcore.TApplication;
 import com.thinkcore.crash.HttpReportSenderFactory;
 import com.thinkcore.storage.TFilePath;
@@ -50,8 +52,10 @@ public class MyApp extends TApplication {
     }
 
 
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

@@ -58,6 +58,9 @@ android {
 //            jniDebuggable false
 //        }
 //    }
+//    dexOptions {
+//        preDexLibraries = false //禁用预编译
+//    }
 }
 
 dependencies {
@@ -77,8 +80,11 @@ dependencies {
     compile 'com.afollestad.material-dialogs:commons:0.9.0.1'
     //ui
     compile 'com.github.ksoichiro:Android-ObservableScrollView:v1.6.0'
-    compile project(':thinkhost')
-
     //异常拦截
     compile 'ch.acra:acra:4.9.0'
+    //热更新
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    compile project(':thinklib')
 }

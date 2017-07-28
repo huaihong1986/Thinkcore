@@ -55,7 +55,7 @@ public class TActivityUtils {
                 super.onPostExecute(o);
                 jumpToActivity(context, datatIntent);
             }
-        }.newExecute();
+        }.newExecute(null);
     }
 
     // 跳转到Activity
@@ -92,7 +92,7 @@ public class TActivityUtils {
                 Intent datatIntent = new Intent(context, targetClass);
                 context.startActivity(datatIntent);
             }
-        }.newExecute();
+        }.newExecute(null);
     }
 
     public static void jumpPostToActivity(final Context context,
@@ -115,7 +115,7 @@ public class TActivityUtils {
                     datatIntent.putExtras(bundle);
                 context.startActivity(datatIntent);
             }
-        }.newExecute();
+        }.newExecute(null);
     }
 
     // 跳转到Activity

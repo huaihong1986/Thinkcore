@@ -27,7 +27,7 @@ public class RxPermissionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        rxPermissions = RxPermissions.getInstance(this);
+        rxPermissions = new RxPermissions(this);
         rxPermissions.setLogging(true);
 
         setContentView(R.layout.rx_act_main);

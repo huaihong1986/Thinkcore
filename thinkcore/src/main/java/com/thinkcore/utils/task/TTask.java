@@ -19,7 +19,9 @@ public class TTask extends AsyncTask {
         // .newSingleThreadExecutor();
         mExecutorService = (ExecutorService) Executors.newFixedThreadPool(30);// 30个线程
         // mExecutorService = (ExecutorService) Executors.newCachedThreadPool();
-    };
+    }
+
+    ;
 
     public TTask() {
         super();
@@ -42,8 +44,8 @@ public class TTask extends AsyncTask {
 
     @Override
     protected void onCancelled(Object o) {
-        if(TAndroidVersionUtils.hasHoneycomb())
-        super.onCancelled(o);
+        if (TAndroidVersionUtils.hasHoneycomb())
+            super.onCancelled(o);
     }
 
     @Override
@@ -57,11 +59,15 @@ public class TTask extends AsyncTask {
     }
 
 
-    public void newExecute(Objects... params) {
+    public void newExecute(Object[] params) {
         if (TAndroidVersionUtils.hasHoneycomb()) {
             executeOnExecutor(mExecutorService, params);
         } else {
             execute(params);
         }
+    }
+
+    public void newExecute() {
+        newExecute(null);
     }
 }

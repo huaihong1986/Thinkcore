@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.thinkcore.utils.config.TPreferenceConfig;
 import com.thinkcore.utils.config.TPropertiesConfig;
-import com.thinkcore.utils.log.TLog;
 import com.thinkcore.utils.network.INetChangeListener;
 import com.thinkcore.utils.network.TNetWorkUtil.netType;
 
@@ -44,7 +43,6 @@ public class TApplication extends Application implements
 
     @Override
     public void onDisConnect() {
-
     }
 
     public static TApplication getInstance() { // 获取程序实例
