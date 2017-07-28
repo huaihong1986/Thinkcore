@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class TFragment extends Fragment {
-	protected View mThat;
+	protected View that;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {// 当Activity中的onCreate方法执行完后调用

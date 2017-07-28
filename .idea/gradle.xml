@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/autolayout" />
             <option value="$PROJECT_DIR$/testThinkcore" />
             <option value="$PROJECT_DIR$/thinkcore" />
             <option value="$PROJECT_DIR$/thinkhost" />
