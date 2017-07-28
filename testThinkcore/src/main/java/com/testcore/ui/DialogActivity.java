@@ -43,14 +43,14 @@ import com.afollestad.materialdialogs.simplelist.MaterialSimpleListAdapter;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
 import com.afollestad.materialdialogs.util.DialogUtils;
 import com.testcore.R;
-import com.thinkcore.ui.CoreAppActivity;
+import com.thinklib.activity.LibAppActivity;
 
 import java.io.File;
 
 /**
  * @author Aidan Follestad (afollestad)
  */
-public class DialogActivity extends CoreAppActivity implements View.OnClickListener,
+public class DialogActivity extends LibAppActivity implements View.OnClickListener,
         FolderChooserDialog.FolderCallback, FileChooserDialog.FileCallback, ColorChooserDialog.ColorCallback {
 
     private final static int STORAGE_PERMISSION_RC = 69;
@@ -129,33 +129,34 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
     }
 
     boolean theme = false;
+
     @Override
     public void onClick(View v) {
         theme = !theme;
-        if(v.getId()==R.id.basicNoTitle){
+        if (v.getId() == R.id.basicNoTitle) {
             new MaterialDialog.Builder(this)
                     .content(R.string.shareLocationPrompt)
                     .positiveText(R.string.agree)
                     .negativeText(R.string.disagree)
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .show();
-        }else if(v.getId()==R.id.basic) {
+        } else if (v.getId() == R.id.basic) {
             new MaterialDialog.Builder(this)
                     .title(R.string.useGoogleLocationServices)
                     .content(R.string.useGoogleLocationServicesPrompt)
                     .positiveText(R.string.agree)
                     .negativeText(R.string.disagree)
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .show();
-        }else if(v.getId()==R.id.basicLongContent) {
+        } else if (v.getId() == R.id.basicLongContent) {
             new MaterialDialog.Builder(this)
                     .title(R.string.useGoogleLocationServices)
                     .content(R.string.loremIpsum)
                     .positiveText(R.string.agree)
                     .negativeText(R.string.disagree)
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .show();
-        }else if(v.getId()==R.id.basicIcon) {
+        } else if (v.getId() == R.id.basicIcon) {
             new MaterialDialog.Builder(this)
                     .iconRes(R.mipmap.ic_launcher)
                     .limitIconToDefaultSize() // limits the displayed icon size to 48dp
@@ -163,9 +164,9 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
                     .content(R.string.useGoogleLocationServicesPrompt)
                     .positiveText(R.string.agree)
                     .negativeText(R.string.disagree)
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .show();
-        }else if(v.getId()==R.id.basicCheckPrompt) {
+        } else if (v.getId() == R.id.basicCheckPrompt) {
             new MaterialDialog.Builder(this)
                     .iconRes(R.mipmap.ic_launcher)
                     .limitIconToDefaultSize()
@@ -179,9 +180,9 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
                         }
                     })
                     .checkBoxPromptRes(R.string.dont_ask_again, false, null)
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .show();
-        }else if(v.getId()==R.id.stacked) {
+        } else if (v.getId() == R.id.stacked) {
             new MaterialDialog.Builder(this)
                     .title(R.string.useGoogleLocationServices)
                     .content(R.string.useGoogleLocationServicesPrompt)
@@ -189,25 +190,25 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
                     .negativeText(R.string.noThanks)
                     .btnStackedGravity(GravityEnum.END)
                     .stackingBehavior(StackingBehavior.ALWAYS)  // this generally should not be forced, but is used for demo purposes
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .show();
-        }else if(v.getId()==R.id.neutral) {
+        } else if (v.getId() == R.id.neutral) {
             new MaterialDialog.Builder(this)
                     .title(R.string.useGoogleLocationServices)
                     .content(R.string.useGoogleLocationServicesPrompt)
                     .positiveText(R.string.agree)
                     .negativeText(R.string.disagree)
                     .neutralText(R.string.more_info)
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .show();
-        }else if(v.getId()==R.id.callbacks) {
+        } else if (v.getId() == R.id.callbacks) {
             new MaterialDialog.Builder(this)
                     .title(R.string.useGoogleLocationServices)
                     .content(R.string.useGoogleLocationServicesPrompt)
                     .positiveText(R.string.agree)
                     .negativeText(R.string.disagree)
                     .neutralText(R.string.more_info)
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .onAny(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -215,7 +216,7 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
                         }
                     })
                     .show();
-        }else if(v.getId()==R.id.list) {
+        } else if (v.getId() == R.id.list) {
             new MaterialDialog.Builder(this)
                     .title(R.string.socialNetworks)
                     .items(R.array.socialNetworks)
@@ -225,9 +226,9 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
                             showToast(which + ": " + text);
                         }
                     })
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .show();
-        }else if(v.getId()==R.id.listNoTitle) {
+        } else if (v.getId() == R.id.listNoTitle) {
             new MaterialDialog.Builder(this)
                     .items(R.array.socialNetworks)
                     .itemsCallback(new MaterialDialog.ListCallback() {
@@ -236,9 +237,9 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
                             showToast(which + ": " + text);
                         }
                     })
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .show();
-        }else if(v.getId()==R.id.longList) {
+        } else if (v.getId() == R.id.longList) {
             new MaterialDialog.Builder(this)
                     .title(R.string.states)
                     .items(R.array.states)
@@ -248,10 +249,10 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
                             showToast(which + ": " + text);
                         }
                     })
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .positiveText(android.R.string.cancel)
                     .show();
-        }else if(v.getId()==R.id.list_longItems) {
+        } else if (v.getId() == R.id.list_longItems) {
             new MaterialDialog.Builder(this)
                     .title(R.string.socialNetworks)
                     .items(R.array.socialNetworks_longItems)
@@ -261,9 +262,9 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
                             showToast(which + ": " + text);
                         }
                     })
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .show();
-        }else if(v.getId()==R.id.list_checkPrompt) {
+        } else if (v.getId() == R.id.list_checkPrompt) {
             new MaterialDialog.Builder(this)
                     .title(R.string.socialNetworks)
                     .items(R.array.socialNetworks)
@@ -273,17 +274,18 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
                             showToast(which + ": " + text);
                         }
                     })
-                    .theme(theme==true?Theme.DARK:Theme.LIGHT)
+                    .theme(theme == true ? Theme.DARK : Theme.LIGHT)
                     .checkBoxPromptRes(R.string.example_prompt, true, null)
                     .negativeText(android.R.string.cancel)
                     .show();
-        }else if(v.getId()==R.id.list_longPress) {
+        } else if (v.getId() == R.id.list_longPress) {
             showListLongPress();
         }
     }
 
 
     static int index = 0;
+
     @SuppressWarnings("ConstantConditions")
     public void showListLongPress() {
 //        index = 0;
@@ -317,7 +319,7 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
 //                .show();
     }
 
-//    @OnClick(R.id.singleChoice)
+    //    @OnClick(R.id.singleChoice)
 //    public void showSingleChoice() {
 //        new MaterialDialog.Builder(this)
 //                .title(R.string.socialNetworks)
@@ -637,15 +639,16 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
             ThemeSingleton.get().widgetColor = color;
         } else {
             primaryPreselect = color;
-            if (getSupportActionBar() != null)
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
+//            if (getSupportActionBar() != null)
+//                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 getWindow().setStatusBarColor(CircleView.shiftColorDown(color));
                 getWindow().setNavigationBarColor(color);
             }
         }
     }
-//
+
+    //
 //    @OnClick(R.id.themed)
 //    public void showThemed() {
 //        new MaterialDialog.Builder(this)
@@ -713,7 +716,8 @@ public class DialogActivity extends CoreAppActivity implements View.OnClickListe
     public void onFileSelection(@NonNull FileChooserDialog dialog, @NonNull File file) {
         showToast(file.getAbsolutePath());
     }
-//
+
+    //
 //    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 //    @OnClick(R.id.folder_chooser)
 //    public void showFolderChooser() {

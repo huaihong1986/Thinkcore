@@ -6,8 +6,9 @@ import android.widget.TextView;
 
 import com.testcore.R;
 import com.thinkcore.http.CoreHttpClient;
-import com.thinkcore.ui.CoreAppActivity;
 import com.thinkcore.utils.log.TLog;
+import com.thinklib.activity.LibAppActivity;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -23,7 +24,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class HttpActivity extends CoreAppActivity implements View.OnClickListener {
+public class HttpActivity extends LibAppActivity implements View.OnClickListener {
     private String TAG = HttpActivity.class.getCanonicalName();
     private  String Html = "http://www.baidu.com";
 

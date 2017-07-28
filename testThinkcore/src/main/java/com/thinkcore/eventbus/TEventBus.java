@@ -3,9 +3,10 @@ package com.thinkcore.eventbus;
 
 import android.os.AsyncTask;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
 
-public class TEventBus extends EventBus{
+
+public class TEventBus extends EventBus {
 	private static final String TAG = TEventBus.class.getSimpleName();
 
 	static volatile TEventBus defaultInstance;

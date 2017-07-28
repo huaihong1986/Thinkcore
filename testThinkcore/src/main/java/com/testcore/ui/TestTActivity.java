@@ -4,15 +4,15 @@ import com.testcore.R;
 import com.testcore.ui.switchButton.MainActivity;
 import com.testcore.utils.NdkJniUtils;
 import com.testcore.utils.ThemeUtils;
-import com.thinkcore.ui.CoreAppActivity;
 import com.thinkcore.utils.TActivityUtils;
 import com.thinkcore.utils.log.TLog;
+import com.thinklib.activity.LibActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class TestTActivity extends CoreAppActivity implements OnClickListener {
+public class TestTActivity extends LibActivity implements OnClickListener {
     private String TAG = TestTActivity.class.getCanonicalName();
     private static boolean mTheme = false;
 

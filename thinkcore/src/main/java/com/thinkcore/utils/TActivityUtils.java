@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.Html;
 import android.view.View;
@@ -32,7 +33,7 @@ public class TActivityUtils {
     private static final String TAG = TActivityUtils.class.getSimpleName();
 
     // 跳转到Activity
-    public static void jumpToActivity(Context context, Intent datatIntent) {
+    public static void jumpToActivity(Context context, Intent datatIntent) {//
         context.startActivity(datatIntent);
     }
 
@@ -64,6 +65,14 @@ public class TActivityUtils {
         context.startActivity(datatIntent);
     }
 
+    public static void jumpToActivity(Context context,
+                                      Class<? extends Activity> targetClass, Bundle bundle) {
+        Intent datatIntent = new Intent(context, targetClass);
+        if (bundle != null)
+            datatIntent.putExtras(bundle);
+        context.startActivity(datatIntent);
+    }
+
     // 跳转到Activity
     public static void jumpPostToActivity(final Context context,
                                           final Class<? extends Activity> targetClass, final int second) {
@@ -86,6 +95,29 @@ public class TActivityUtils {
         }.newExecute();
     }
 
+    public static void jumpPostToActivity(final Context context,
+                                          final Class<? extends Activity> targetClass, final Bundle bundle, final int second) {
+        new TTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                try {
+                    Thread.sleep(second * 1000);
+                } catch (Exception e) {
+                }
+                return super.doInBackground(params);
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                Intent datatIntent = new Intent(context, targetClass);
+                if (bundle != null)
+                    datatIntent.putExtras(bundle);
+                context.startActivity(datatIntent);
+            }
+        }.newExecute();
+    }
+
     // 跳转到Activity
     public static void jumpToNewActivity(Context context,
                                          Class<? extends Activity> targetClass) {
@@ -94,11 +126,27 @@ public class TActivityUtils {
         context.startActivity(datatIntent);
     }
 
+    public static void jumpToNewActivity(Context context,
+                                         Class<? extends Activity> targetClass, final Bundle bundle) {
+        Intent datatIntent = new Intent(context, targetClass);
+        datatIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (bundle != null)
+            datatIntent.putExtras(bundle);
+        context.startActivity(datatIntent);
+    }
+
     public static void jumpToNewTopActivity(Context context,
                                             Class<? extends Activity> targetClass) {
+        jumpToNewTopActivity(context, targetClass, null);
+    }
+
+    public static void jumpToNewTopActivity(Context context,
+                                            Class<? extends Activity> targetClass, final Bundle bundle) {
         Intent datatIntent = new Intent(context, targetClass);
         datatIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        if (bundle != null)
+            datatIntent.putExtras(bundle);
         context.startActivity(datatIntent);
     }
 
@@ -117,9 +165,27 @@ public class TActivityUtils {
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
-                Intent datatIntent = new Intent(context, targetClass);
-                datatIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(datatIntent);
+                jumpToNewActivity(context, targetClass, null);
+            }
+        }.newExecute();
+    }
+
+    public static void jumpPostToNewActivity(final Context context,
+                                             final Class<? extends Activity> targetClass, final Bundle bundle, final int second) {
+        new TTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                try {
+                    Thread.sleep(second * 1000);
+                } catch (Exception e) {
+                }
+                return super.doInBackground(params);
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                jumpToNewActivity(context, targetClass, bundle);
             }
         }.newExecute();
     }
@@ -139,10 +205,27 @@ public class TActivityUtils {
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
-                Intent datatIntent = new Intent(context, targetClass);
-                datatIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                context.startActivity(datatIntent);
+                jumpToNewTopActivity(context, targetClass);
+            }
+        }.newExecute();
+    }
+
+    public static void jumpPostToNewTopActivity(final Context context,
+                                                final Class<? extends Activity> targetClass, final Bundle bundle, final int second) {
+        new TTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                try {
+                    Thread.sleep(second * 1000);
+                } catch (Exception e) {
+                }
+                return super.doInBackground(params);
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                jumpToNewTopActivity(context, targetClass, bundle);
             }
         }.newExecute();
     }
@@ -160,17 +243,29 @@ public class TActivityUtils {
 
     public static void jumpToActivityForResult(TAppActivity activity,
                                                Class<? extends Activity> targetClass, IActivityResult iActivityResult) {
+        jumpToActivityForResult(activity, targetClass, null, iActivityResult);
+    }
+
+    public static void jumpToActivityForResult(TAppActivity activity,
+                                               Class<? extends Activity> targetClass, final Bundle bundle, IActivityResult iActivityResult) {
         if (iActivityResult == null)
             return;
         Random random = new Random();
         int resultId = random.nextInt(10000);
         activity.getIActivityResult().put(resultId, iActivityResult);
-        jumpToActivityForResult(activity, targetClass, resultId);
+        jumpToActivityForResult(activity, targetClass, bundle, resultId);
     }
 
     public static void jumpToActivityForResult(Activity activity,
                                                Class<? extends Activity> targetClass, int resultId) {
+        jumpToActivityForResult(activity, targetClass, null, resultId);
+    }
+
+    public static void jumpToActivityForResult(Activity activity,
+                                               Class<? extends Activity> targetClass, final Bundle bundle, int resultId) {
         Intent datatIntent = new Intent(activity, targetClass);
+        if (bundle != null)
+            datatIntent.putExtras(bundle);
         activity.startActivityForResult(datatIntent, resultId);
     }
 

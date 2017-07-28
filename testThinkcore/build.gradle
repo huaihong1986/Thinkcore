@@ -78,4 +78,7 @@ dependencies {
     //ui
     compile 'com.github.ksoichiro:Android-ObservableScrollView:v1.6.0'
     compile project(':thinkhost')
+
+    //异常拦截
+    compile 'ch.acra:acra:4.9.0'
 }

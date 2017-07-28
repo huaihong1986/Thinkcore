@@ -10,9 +10,9 @@ import android.widget.Toast;
 import com.golshadi.majid.core.DownloadManagerPro;
 import com.golshadi.majid.report.listener.DownloadManagerListener;
 import com.testcore.R;
-import com.thinkcore.ui.CoreAppActivity;
+import com.thinklib.activity.LibAppActivity;
 
-public class DownloadActivity extends CoreAppActivity implements View.OnClickListener,DownloadManagerListener {
+public class DownloadActivity extends LibAppActivity implements View.OnClickListener,DownloadManagerListener {
     DownloadManagerPro mDownloadManagerPro;
 
 
