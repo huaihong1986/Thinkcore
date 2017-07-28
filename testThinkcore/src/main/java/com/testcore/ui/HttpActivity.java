@@ -9,8 +9,13 @@ import com.thinkcore.http.CoreHttpClient;
 import com.thinkcore.utils.log.TLog;
 import com.thinklib.activity.LibAppActivity;
 
+import org.reactivestreams.Subscriber;
+
 import java.io.IOException;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -18,15 +23,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 
 public class HttpActivity extends LibAppActivity implements View.OnClickListener {
     private String TAG = HttpActivity.class.getCanonicalName();
-    private  String Html = "http://www.baidu.com";
+    private String Html = "http://www.baidu.com";
 
     private TextView mResultTextView;
     private CoreHttpClient mClientHttp;
@@ -72,7 +73,7 @@ public class HttpActivity extends LibAppActivity implements View.OnClickListener
         super.onStop();
     }
 
-    private void setResult(final String result){
+    private void setResult(final String result) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -86,7 +87,7 @@ public class HttpActivity extends LibAppActivity implements View.OnClickListener
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try{
+                try {
                     OkHttpClient client = new OkHttpClient();
                     Request.Builder requestBuilder = new Request.Builder().url(Html);
                     //可以省略，默认是GET请求
@@ -102,7 +103,7 @@ public class HttpActivity extends LibAppActivity implements View.OnClickListener
                         String str = response.networkResponse().toString();
                         TLog.i("wangshu", "network---" + str);
                     }
-                }catch (Exception ex){
+                } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
@@ -112,13 +113,13 @@ public class HttpActivity extends LibAppActivity implements View.OnClickListener
     /**
      * 异步 Get方法
      */
-    private void okHttpAsynchronousGet(){
-        OkHttpClient client=new OkHttpClient();
+    private void okHttpAsynchronousGet() {
+        OkHttpClient client = new OkHttpClient();
         Request.Builder requestBuilder = new Request.Builder().url(Html);
         //可以省略，默认是GET请求
-        requestBuilder.method("GET",null);
+        requestBuilder.method("GET", null);
         Request request = requestBuilder.build();
-        Call mcall= client.newCall(request);
+        Call mcall = client.newCall(request);
         mcall.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -172,7 +173,7 @@ public class HttpActivity extends LibAppActivity implements View.OnClickListener
                             .build();
                     Request request = new Request.Builder().url(Html).post(formBody).build();
                     okhttp3.Response response = okHttpClient.newCall(request).execute();
-                    if(response.isSuccessful())
+                    if (response.isSuccessful())
                         setResult(response.body().string());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -292,48 +293,47 @@ public class HttpActivity extends LibAppActivity implements View.OnClickListener
         final okhttp3.Request request = new okhttp3.Request.Builder()
                 .url(Html)
                 .build();
-        rx.Observable.create(new Observable.OnSubscribe<String>() {
-            @Override
-            public void call(Subscriber<? super String> subscriber) {
-                try {
-                    subscriber.onStart();//处理请求在IO线程中进行
-                    final Response response = client.newCall(request).execute();
-                    if (null != response.cacheResponse()) {
-                        subscriber.onError(new Exception("无数据"));
-                    } else {
-                        String body = response.body().string();
-                        subscriber.onNext(body);
-                    }
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                    subscriber.onError(e);
-                }
-            }
-        })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<String>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-                    @Override
-                    public void onError(Throwable e) {
-//                        showInfo(e.toString());
-                        setResult(e.getMessage());
-                    }
-                    @Override
-                    public void onNext(String s) {
-                        //处理返回结果，在UI线程中，可以直接显示结果
-//                        showInfo(s);
-                        setResult(s);
-                    }
-
-                    @Override
-                    public void onStart() {
-                        super.onStart();
-                    }
-                }) ;
-
+//        rx.Observable.create(new Observable.OnSubscribe<String>() {
+//            @Override
+//            public void call(Subscriber<? super String> subscriber) {
+//                try {
+//                    subscriber.onStart();//处理请求在IO线程中进行
+//                    final Response response = client.newCall(request).execute();
+//                    if (null != response.cacheResponse()) {
+//                        subscriber.onError(new Exception("无数据"));
+//                    } else {
+//                        String body = response.body().string();
+//                        subscriber.onNext(body);
+//                    }
+//                }
+//                catch (IOException e) {
+//                    e.printStackTrace();
+//                    subscriber.onError(e);
+//                }
+//            }
+//        })
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<String>() {
+//                    @Override
+//                    public void onCompleted() {
+//                    }
+//                    @Override
+//                    public void onError(Throwable e) {
+////                        showInfo(e.toString());
+//                        setResult(e.getMessage());
+//                    }
+//                    @Override
+//                    public void onNext(String s) {
+//                        //处理返回结果，在UI线程中，可以直接显示结果
+////                        showInfo(s);
+//                        setResult(s);
+//                    }
+//
+//                    @Override
+//                    public void onStart() {
+//                        super.onStart();
+//                    }
+//                }) ;
     }
 }

@@ -13,8 +13,6 @@ import com.testcore.R;
 
 import java.io.IOException;
 
-import rx.functions.Action0;
-import rx.functions.Action1;
 
 public class RxPermissionsActivity extends AppCompatActivity {
 
@@ -33,8 +31,7 @@ public class RxPermissionsActivity extends AppCompatActivity {
         setContentView(R.layout.rx_act_main);
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
 
-        rxPermissions.ensure(Manifest.permission.CAMERA);
-
+//        rxPermissions.ensure(Manifest.permission.CAMERA);
 //        RxPermissions.getInstance(this)
 //                .request(Manifest.permission.CAMERA)
 //                .subscribe(granted -> {

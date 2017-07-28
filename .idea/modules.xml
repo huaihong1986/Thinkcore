@@ -7,9 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/droidplugin/droidplugin.iml" filepath="$PROJECT_DIR$/droidplugin/droidplugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/testThinkcore/testThinkcore.iml" filepath="$PROJECT_DIR$/testThinkcore/testThinkcore.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinkcore/thinkcore.iml" filepath="$PROJECT_DIR$/thinkcore/thinkcore.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thinkhost/thinkhost.iml" filepath="$PROJECT_DIR$/thinkhost/thinkhost.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinklib/thinklib.iml" filepath="$PROJECT_DIR$/thinklib/thinklib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thinkplugin/thinkplugin.iml" filepath="$PROJECT_DIR$/thinkplugin/thinkplugin.iml" />
     </modules>
   </component>
 </project>
