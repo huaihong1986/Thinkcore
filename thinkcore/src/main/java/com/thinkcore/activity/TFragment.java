@@ -1,6 +1,7 @@
 package com.thinkcore.activity;
 
 import com.thinkcore.TApplication;
+import com.thinkcore.view.autolayout.AutoLayoutFragment;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class TFragment extends Fragment {
+public class TFragment extends AutoLayoutFragment {
 	protected View that;
 
 	@Override

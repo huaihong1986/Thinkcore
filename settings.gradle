@@ -1,1 +1,1 @@
-include ':testThinkcore', ':thinkcore', ':thinklib', ':autolayout'
+include ':testThinkcore', ':thinkcore', ':thinklib'

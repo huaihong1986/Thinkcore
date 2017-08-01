@@ -8,7 +8,7 @@ import com.thinkcore.TApplication;
 import com.thinkcore.dialog.progress.TDialogManager;
 import com.thinkcore.utils.TActivityUtils;
 import com.thinkcore.utils.TToastUtils;
-import com.zhy.autolayout.AutoLayoutActivity;
+import com.thinkcore.view.autolayout.AutoLayoutActivity;
 
 import java.util.HashMap;
 
