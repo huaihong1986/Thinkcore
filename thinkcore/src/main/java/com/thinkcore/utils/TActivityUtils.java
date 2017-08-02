@@ -329,7 +329,7 @@ public class TActivityUtils {
         Random random = new Random();
         int resultId = random.nextInt(10000);
         activity.getIActivityResult().put(resultId, iActivityResult);
-        jumpToSystemLocPickImageActivity(activity, iActivityResult);
+        jumpToSystemLocPickImageActivity(activity, resultId);
     }
 
     public static void jumpToSystemLocPickImageActivity(TAppActivity activity,
@@ -337,7 +337,7 @@ public class TActivityUtils {
         Random random = new Random();
         int resultId = random.nextInt(10000);
         activity.getIActivityResult().put(resultId, iActivityResult);
-        jumpToSystemLocPickImageActivity(activity, iActivityResult);
+        jumpToSystemLocPickImageActivity(activity, resultId);
     }
 
     public static void jumpToSystemLocPickImageActivity(Activity activity,
@@ -354,7 +354,7 @@ public class TActivityUtils {
         Random random = new Random();
         int resultId = random.nextInt(10000);
         activity.getIActivityResult().put(resultId, iActivityResult);
-        jumpToSystemCameraPickImageActivity(activity, iActivityResult);
+        jumpToSystemCameraPickImageActivity(activity, resultId);
     }
 
     public static void jumpToSystemCameraPickImageActivity(TAppActivity activity,
@@ -362,7 +362,7 @@ public class TActivityUtils {
         Random random = new Random();
         int resultId = random.nextInt(10000);
         activity.getIActivityResult().put(resultId, iActivityResult);
-        jumpToSystemCameraPickImageActivity(activity, iActivityResult);
+        jumpToSystemCameraPickImageActivity(activity, resultId);
     }
 
     public static void jumpToSystemCameraPickImageActivity(Activity activity,
@@ -508,7 +508,6 @@ public class TActivityUtils {
         return hasInstall;
     }
 
-
     /**
      * @param context
      * @param activityName
@@ -525,7 +524,6 @@ public class TActivityUtils {
             return false;
         return cName.getClassName().equals(activityName);
     }
-
 
     public interface IActivityResult {
         void onActivityResult(int resultCode, Intent intent);

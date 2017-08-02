@@ -8,6 +8,7 @@ import com.thinkcore.storage.Storage;
 import com.thinkcore.storage.TFilePath;
 import com.thinkcore.storage.TStorageUtils;
 import com.thinkcore.utils.TStringUtils;
+import com.thinkcore.utils.TTimeUtils;
 
 //打印到sdcard上面的日志类
 public class PrintToFileLogger implements ILogger {
@@ -18,8 +19,6 @@ public class PrintToFileLogger implements ILogger {
     public static final int ERROR = 6;
     public static final int ASSERT = 7;
 
-    private static final SimpleDateFormat TIMESTAMP_FMT = new SimpleDateFormat(
-            "[yyyy-MM-dd HH:mm:ss] ");
     private String nameString = "", cacheDirName = "";
     private Storage storage = null;
 
@@ -38,7 +37,7 @@ public class PrintToFileLogger implements ILogger {
                 storage = filePath.getInternalStorage();
             }
 
-            cacheDirName = filePath.getCacheDirName();
+            cacheDirName = filePath.getCacheDir();
             result = storage.createFile(cacheDirName, nameString, "");
             result = true;
         } catch (Exception e) {
@@ -145,7 +144,7 @@ public class PrintToFileLogger implements ILogger {
                 || !TStorageUtils.isExternalStorageWrittenable())
             return;
         try {
-            String content = TIMESTAMP_FMT.format(new Date()) + message;
+            String content = TTimeUtils.getFullTime(System.currentTimeMillis()) + "=====>" + message;
             if (storage != null) {
                 if (storage.isFileExist(cacheDirName, nameString)) {
                     storage.appendFile(cacheDirName,

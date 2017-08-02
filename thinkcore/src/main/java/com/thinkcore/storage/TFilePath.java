@@ -129,7 +129,7 @@ public class TFilePath {
         return getExternalAppDir() + PATH_SPLIT + PATH_DOWNLOAD;
     }
 
-    public String getCacheDirName() {
+    public String getCacheDir() {
         return appName + PATH_SPLIT + PATH_CACHE + PATH_SPLIT;
     }
 

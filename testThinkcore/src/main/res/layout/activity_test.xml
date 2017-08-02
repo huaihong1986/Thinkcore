@@ -1,174 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
-		<TextView
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:paddingBottom="10dip"
-			android:paddingTop="20dip"
-			android:text="测试"
-			android:textSize="24sp" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="10dip"
+            android:paddingTop="20dip"
+            android:text="测试"
+            android:textSize="24sp" />
 
-		<Button
-			android:id="@+id/Button_crash"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试奔溃"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_log"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试Log" />
 
-		<Button
-			android:id="@+id/Button_http"
-			android:layout_width="320dp"
-			android:text="测试Okhttp3"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_startResult"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试StartResult" />
 
-		<Button
-			android:id="@+id/Button_download"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试下载"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_crash"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试奔溃" />
 
-		<Button
-			android:id="@+id/Button_dialog"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="对话框"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_http"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试Okhttp3" />
 
-		<Button
-			android:id="@+id/Button_theme"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试主题"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_download"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试下载" />
 
-		<Button
-			android:id="@+id/Button_ripple"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试Ripple"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_dialog"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="对话框" />
 
-		<Button
-			android:id="@+id/Button_BetterSpinner"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试BetterSpinner"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_theme"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试主题" />
 
-		<Button
-			android:id="@+id/Button_Switch"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试Switch"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_ripple"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试Ripple" />
 
-		<Button
-			android:id="@+id/Button_Refresh"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试Refresh"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_BetterSpinner"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试BetterSpinner" />
 
-		<Button
-			android:id="@+id/Button_Snackbar"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试Snackbar"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_Switch"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试Switch" />
 
-		<Button
-			android:id="@+id/Button_RippleView"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试RippleView"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_Refresh"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试Refresh" />
 
-		<Button
-			android:id="@+id/Button_reveallayout"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试reveallayout"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_Snackbar"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试Snackbar" />
 
-		<Button
-			android:id="@+id/Button_Discreteseekbar"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试Discreteseekbar"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_RippleView"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试RippleView" />
 
-		<Button
-			android:id="@+id/Button_compent"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试compent"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_reveallayout"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试reveallayout" />
 
-		<Button
-			android:id="@+id/Button_fd"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试fd"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
-		<Button
-			android:id="@+id/Button_setting"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试setting"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_Discreteseekbar"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试Discreteseekbar" />
 
-		<Button
-			android:id="@+id/Button_rangerbar"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试rangerbar"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_compent"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试compent" />
 
-		<Button
-			android:id="@+id/Button_scroolview"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试scroolview"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
+        <Button
+            android:id="@+id/Button_fd"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试fd" />
+
+        <Button
+            android:id="@+id/Button_setting"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试setting" />
+
+        <Button
+            android:id="@+id/Button_rangerbar"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试rangerbar" />
+
+        <Button
+            android:id="@+id/Button_scroolview"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试scroolview" />
 
 
-		<Button
-			android:id="@+id/Button_plugin"
-			android:layout_width="320dp"
-			android:layout_height="wrap_content"
-			android:text="测试奇虎插件"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip" />
-	</LinearLayout>
+        <Button
+            android:id="@+id/Button_plugin"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="测试奇虎插件" />
+    </LinearLayout>
 
 </ScrollView>

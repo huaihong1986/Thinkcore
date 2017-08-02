@@ -1,13 +1,16 @@
 package com.testcore.ui;
 
+import com.tbruyelle.rxpermissions.RxPermissions;
 import com.testcore.R;
 import com.testcore.ui.switchButton.MainActivity;
 import com.testcore.utils.NdkJniUtils;
 import com.testcore.utils.ThemeUtils;
 import com.thinkcore.utils.TActivityUtils;
+import com.thinkcore.utils.TTimeUtils;
 import com.thinkcore.utils.log.TLog;
 import com.thinklib.activity.LibActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +31,8 @@ public class TestTActivity extends LibActivity implements OnClickListener {
             ex.printStackTrace();
         }
 
+        findViewById(R.id.Button_log).setOnClickListener(this);
+        findViewById(R.id.Button_startResult).setOnClickListener(this);
         findViewById(R.id.Button_crash).setOnClickListener(this);
         findViewById(R.id.Button_http).setOnClickListener(this);
         findViewById(R.id.Button_download).setOnClickListener(this);
@@ -74,7 +79,35 @@ public class TestTActivity extends LibActivity implements OnClickListener {
 
     @Override
     public void onClick(View arg0) {
-        if (arg0.getId() == R.id.Button_crash) {
+        if (arg0.getId() == R.id.Button_startResult) {
+//            TActivityUtils.jumpToSystemCameraPickImageActivity(this, new TActivityUtils.IActivityResult() {
+//                @Override
+//                public void onActivityResult(int resultCode, Intent intent) {
+//                    TLog.i("", "" + resultCode);
+//                }
+//            });
+
+            TActivityUtils.jumpToActivityForResult(this, MainActivity.class, new TActivityUtils.IActivityResult() {
+                @Override
+                public void onActivityResult(int resultCode, Intent intent) {
+                    TLog.i("", "" + resultCode);
+                }
+            });
+        } else if (arg0.getId() == R.id.Button_log) {
+            TLog.enablePrintToFileLogger(false);
+            TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test1");
+            TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test2");
+            TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test3");
+            TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test4");
+            TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test5");
+
+            TLog.enablePrintToFileLogger(true);
+            TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test6");
+            TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test7");
+            TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test8");
+            TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test9");
+            TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test10");
+        } else if (arg0.getId() == R.id.Button_crash) {
             int test = 10 / 0;
         } else if (arg0.getId() == R.id.Button_http) {
             TActivityUtils.jumpToActivity(this, HttpActivity.class);
