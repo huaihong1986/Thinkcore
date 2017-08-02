@@ -6,7 +6,7 @@ import android.telephony.TelephonyManager;
 
 public class TDevice {
 
-    private String getMacByPhone() {
+    public String getDeviceMac() {
         WifiManager wm = (WifiManager) TApplication.getInstance().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         return wm.getConnectionInfo().getMacAddress();
     }
