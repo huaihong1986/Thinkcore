@@ -2,6 +2,7 @@ package com.thinklib.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import com.thinkcore.event.TEvent;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class LibFragment extends TFragment {
     protected View that;
@@ -81,4 +84,23 @@ public class LibFragment extends TFragment {
     @Subscribe(threadMode = ThreadMode.POSTING, sticky = true)
     public void processStickyEvent(TEvent event) {
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // EasyPermissions handles the request result.
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+//    private void smsTask() {
+//        if (EasyPermissions.hasPermissions(getContext(), Manifest.permission.READ_SMS)) {
+//            // Have permission, do the thing!
+//            Toast.makeText(getActivity(),
+//        } else {
+//            // Request one permission
+//            EasyPermissions.requestPermissions(this, getString(R.string.rationale_sms),
+//                    RC_SMS_PERM, Manifest.permission.READ_SMS);
+//        }
+//    }
 }
