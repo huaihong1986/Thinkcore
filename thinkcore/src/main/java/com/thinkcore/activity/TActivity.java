@@ -25,7 +25,6 @@ public abstract class TActivity extends AutoLayoutActivity {
     protected Status mStatus;
     protected HashMap<Integer, TActivityUtils.IActivityResult> mIActivityResult = new HashMap<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
