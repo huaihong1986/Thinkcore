@@ -42,3 +42,44 @@ stl容器：重写stl部分容器。
 
 其它辅助管理：版本、内存、手机格式、字符串操作……等等。
 
+
+
+导入第一步：
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+	
+导入第二步：添加引用
+
+	dependencies {
+		//综合包
+	      compile 'com.github.banketree:Thinkcore:1.3.0'
+	}
+	
+	Or
+	
+	dependencies {
+		//界面管理
+	        compile 'com.github.banketree:thinkActivity:1.3.0'  //
+		//缓存管理
+		compile 'com.github.banketree:thinkCache:1.3.0'
+		//加密解密管理
+		compile 'com.github.banketree:thinkEncryption:1.3.0'
+		//日志管理
+		compile 'com.github.banketree:thinkLog:1.3.0'
+		//网络管理
+		compile 'com.github.banketree:thinkNetwork:1.3.0'
+		//偏好设置管理
+		compile 'com.github.banketree:thinkPreference:1.3.0'
+		//路径管理
+		compile 'com.github.banketree:thinkStorage:1.3.0'
+		//任务管理
+		compile 'com.github.banketree:thinkTask:1.3.0'
+		//辅助工具管理
+		compile 'com.github.banketree:thinkUtils:1.3.0'
+	}
+
