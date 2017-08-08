@@ -64,7 +64,7 @@ stl容器：重写stl部分容器。
 	
 	dependencies {
 		//界面管理
-		compile 'com.github.banketree.Thinkcore:thinkActivity:1.3.1'  //
+		compile 'com.github.banketree.Thinkcore:autolayout:1.3.1'  //
 	        compile 'com.github.banketree.Thinkcore:thinkActivity:1.3.1'  //
 		//缓存管理
 		compile 'com.github.banketree.Thinkcore:thinkCache:1.3.1'
