@@ -1,13 +1,15 @@
 package com.testcore.ui;
 
-import com.tbruyelle.rxpermissions.RxPermissions;
 import com.testcore.R;
 import com.testcore.ui.switchButton.MainActivity;
 import com.testcore.utils.NdkJniUtils;
 import com.testcore.utils.ThemeUtils;
-import com.thinkcore.utils.TActivityUtils;
+import com.thinkcore.activity.TActivityUtils;
+import com.thinkcore.log.TLog;
+import com.thinkcore.preference.IConfig;
+import com.thinkcore.preference.TPreferenceConfig;
+import com.thinkcore.preference.TPropertiesConfig;
 import com.thinkcore.utils.TTimeUtils;
-import com.thinkcore.utils.log.TLog;
 import com.thinklib.activity.LibActivity;
 
 import android.content.Intent;
@@ -94,19 +96,51 @@ public class TestTActivity extends LibActivity implements OnClickListener {
                 }
             });
         } else if (arg0.getId() == R.id.Button_log) {
-            TLog.enablePrintToFileLogger(false);
+            TLog.enablePrintToFileLogger(this, false);
             TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test1");
             TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test2");
             TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test3");
             TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test4");
             TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test5");
 
-            TLog.enablePrintToFileLogger(true);
+            TLog.enablePrintToFileLogger(this, true);
             TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test6");
             TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test7");
             TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test8");
             TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test9");
             TLog.i("", TTimeUtils.getFullTime(System.currentTimeMillis()) + "test10");
+
+
+            TLog.i("", "new TPreferenceConfig()");
+            IConfig config = new TPreferenceConfig(this);
+            config.open("test_preference");
+            TLog.i("", "config.open(\"test_preference\");");
+            TLog.i("", "config.isLoadConfig()--->" + config.isLoadConfig());
+
+            if (config.isLoadConfig()) {
+                config.setBoolean("test1", false);
+                config.setInt("test2", 100);
+
+                TLog.i("", "test1:" + config.getBoolean("test1", true));
+                TLog.i("", "test2:" + config.getInt("test2", 0));
+            }
+            TLog.i("", "test_preference over");
+
+            TLog.i("", "new TPropertiesConfig()");
+            config = new TPropertiesConfig(this);
+            config.open("test_properties");
+            TLog.i("", "config.open(\"test_properties\");");
+            TLog.i("", "config.isLoadConfig()--->" + config.isLoadConfig());
+
+            if (config.isLoadConfig()) {
+                config.setBoolean("test4", true);
+                config.setInt("test5", 99);
+
+                TLog.i("", "test4:" + config.getBoolean("test1", false));
+                TLog.i("", "test5:" + config.getInt("test2", 0));
+            }
+
+            TLog.i("", "test_properties over");
         } else if (arg0.getId() == R.id.Button_crash) {
             int test = 10 / 0;
         } else if (arg0.getId() == R.id.Button_http) {

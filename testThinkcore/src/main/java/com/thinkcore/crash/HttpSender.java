@@ -21,9 +21,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.testcore.ui.TestTActivity;
-import com.thinkcore.utils.TActivityUtils;
+import com.thinkcore.activity.TActivityUtils;
+import com.thinkcore.log.TLog;
 import com.thinkcore.utils.TToastUtils;
-import com.thinkcore.utils.log.TLog;
 
 import junit.framework.Test;
 

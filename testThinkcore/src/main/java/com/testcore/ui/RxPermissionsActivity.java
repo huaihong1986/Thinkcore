@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.SurfaceView;
 import android.widget.Toast;
 
-import com.tbruyelle.rxpermissions.RxPermissions;
 import com.testcore.R;
 
 import java.io.IOException;
@@ -20,13 +19,13 @@ public class RxPermissionsActivity extends AppCompatActivity {
 
     private Camera camera;
     private SurfaceView surfaceView;
-    private RxPermissions rxPermissions;
+//    private RxPermissions rxPermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        rxPermissions = new RxPermissions(this);
-        rxPermissions.setLogging(true);
+//        rxPermissions = new RxPermissions(this);
+//        rxPermissions.setLogging(true);
 
         setContentView(R.layout.rx_act_main);
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView);

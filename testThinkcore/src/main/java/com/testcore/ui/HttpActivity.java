@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.testcore.R;
 import com.thinkcore.http.CoreHttpClient;
-import com.thinkcore.utils.log.TLog;
+import com.thinkcore.log.TLog;
 import com.thinklib.activity.LibAppActivity;
 
 import org.reactivestreams.Subscriber;
@@ -77,7 +77,7 @@ public class HttpActivity extends LibAppActivity implements View.OnClickListener
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                makeText("请求成功");
+//                makeText("请求成功");
                 mResultTextView.setText(result);
             }
         });

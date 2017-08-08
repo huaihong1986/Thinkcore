@@ -13,7 +13,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <uses-sdk tools:overrideLibrary="rx.android,com.golshadi.majid,com.thinkcore,com.thinklib,com.thinkhost,com.jakewharton.rxbinding,com.zhy.autolayout,com.jakewharton.rxbinding2" />
+    <uses-sdk tools:overrideLibrary="android.support.v7.gridlayout,android.support.design,rx.android,com.golshadi.majid,com.thinkcore,com.thinklib,com.thinkhost,com.jakewharton.rxbinding,com.zhy.autolayout,com.jakewharton.rxbinding2" />
+
 
     <application
         android:name=".MyApp"

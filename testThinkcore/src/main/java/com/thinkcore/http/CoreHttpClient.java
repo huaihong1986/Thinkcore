@@ -1,6 +1,6 @@
 package com.thinkcore.http;
 
-import com.thinkcore.utils.log.TLog;
+import com.thinkcore.log.TLog;
 
 import java.io.IOException;
 import java.net.URLEncoder;
