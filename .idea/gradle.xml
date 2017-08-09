@@ -5,13 +5,22 @@
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="F:\AndroidStudio\gradle\gradle-2.14.1" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/autolayout" />
             <option value="$PROJECT_DIR$/testThinkcore" />
-            <option value="$PROJECT_DIR$/thinkcore" />
-            <option value="$PROJECT_DIR$/thinklib" />
+            <option value="$PROJECT_DIR$/thinkActivity" />
+            <option value="$PROJECT_DIR$/thinkCache" />
+            <option value="$PROJECT_DIR$/thinkCore" />
+            <option value="$PROJECT_DIR$/thinkEncryption" />
+            <option value="$PROJECT_DIR$/thinkLib" />
+            <option value="$PROJECT_DIR$/thinkLog" />
+            <option value="$PROJECT_DIR$/thinkNetwork" />
+            <option value="$PROJECT_DIR$/thinkPreference" />
+            <option value="$PROJECT_DIR$/thinkStorage" />
+            <option value="$PROJECT_DIR$/thinkTask" />
+            <option value="$PROJECT_DIR$/thinkUtils" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

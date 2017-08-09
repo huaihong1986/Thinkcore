@@ -3,10 +3,20 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Thinkcore.iml" filepath="$PROJECT_DIR$/Thinkcore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/autolayout/autolayout.iml" filepath="$PROJECT_DIR$/autolayout/autolayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/droidplugin/droidplugin.iml" filepath="$PROJECT_DIR$/droidplugin/droidplugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/testThinkcore/testThinkcore.iml" filepath="$PROJECT_DIR$/testThinkcore/testThinkcore.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thinkcore/thinkcore.iml" filepath="$PROJECT_DIR$/thinkcore/thinkcore.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thinklib/thinklib.iml" filepath="$PROJECT_DIR$/thinklib/thinklib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thinkActivity/thinkActivity.iml" filepath="$PROJECT_DIR$/thinkActivity/thinkActivity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thinkCache/thinkCache.iml" filepath="$PROJECT_DIR$/thinkCache/thinkCache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thinkCore/thinkCore.iml" filepath="$PROJECT_DIR$/thinkCore/thinkCore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thinkEncryption/thinkEncryption.iml" filepath="$PROJECT_DIR$/thinkEncryption/thinkEncryption.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thinkLib/thinkLib.iml" filepath="$PROJECT_DIR$/thinkLib/thinkLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thinkLog/thinkLog.iml" filepath="$PROJECT_DIR$/thinkLog/thinkLog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thinkNetwork/thinkNetwork.iml" filepath="$PROJECT_DIR$/thinkNetwork/thinkNetwork.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thinkPreference/thinkPreference.iml" filepath="$PROJECT_DIR$/thinkPreference/thinkPreference.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thinkStorage/thinkStorage.iml" filepath="$PROJECT_DIR$/thinkStorage/thinkStorage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thinkTask/thinkTask.iml" filepath="$PROJECT_DIR$/thinkTask/thinkTask.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thinkUtils/thinkUtils.iml" filepath="$PROJECT_DIR$/thinkUtils/thinkUtils.iml" />
     </modules>
   </component>
 </project>
