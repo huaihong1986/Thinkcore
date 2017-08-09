@@ -132,9 +132,9 @@ public class TNetworkStateReceiver extends BroadcastReceiver {
      *
      * @param observer
      */
-    public static void registerObserver(INetChangeListener observer) {
+    public void registerObserver(INetChangeListener observer) {
         if (netChangeObserverArrayList == null) {
-            netChangeObserverArrayList = new ArrayList<INetChangeListener>();
+            netChangeObserverArrayList = new ArrayList<>();
         }
         netChangeObserverArrayList.add(observer);
     }
@@ -149,5 +149,4 @@ public class TNetworkStateReceiver extends BroadcastReceiver {
             netChangeObserverArrayList.remove(observer);
         }
     }
-
 }
