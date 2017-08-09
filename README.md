@@ -57,29 +57,30 @@ stl容器：重写stl部分容器。
 
 	dependencies {
 		//综合包
-	      compile 'com.github.banketree:Thinkcore:1.3.0'
+	     compile 'com.github.banketree:Thinkcore:1.3.1'
 	}
 	
 	Or
 	
 	dependencies {
 		//界面管理
-	        compile 'com.github.banketree:thinkActivity:1.3.0'  //
+		compile 'com.github.banketree.Thinkcore:autolayout:1.3.1'  //
+	        compile 'com.github.banketree.Thinkcore:thinkActivity:1.3.1'  //
 		//缓存管理
-		compile 'com.github.banketree:thinkCache:1.3.0'
+		compile 'com.github.banketree.Thinkcore:thinkCache:1.3.1'
 		//加密解密管理
-		compile 'com.github.banketree:thinkEncryption:1.3.0'
+		compile 'com.github.banketree.Thinkcore:thinkEncryption:1.3.1'
 		//日志管理
-		compile 'com.github.banketree:thinkLog:1.3.0'
+		compile 'com.github.banketree.Thinkcore:thinkLog:1.3.1'
 		//网络管理
-		compile 'com.github.banketree:thinkNetwork:1.3.0'
+		compile 'com.github.banketree.Thinkcore:thinkNetwork:1.3.1'
 		//偏好设置管理
-		compile 'com.github.banketree:thinkPreference:1.3.0'
+		compile 'com.github.banketree.Thinkcore:thinkPreference:1.3.1'
 		//路径管理
-		compile 'com.github.banketree:thinkStorage:1.3.0'
+		compile 'com.github.banketree.Thinkcore:thinkStorage:1.3.1'
 		//任务管理
-		compile 'com.github.banketree:thinkTask:1.3.0'
+		compile 'com.github.banketree.Thinkcore:thinkTask:1.3.1'
 		//辅助工具管理
-		compile 'com.github.banketree:thinkUtils:1.3.0'
+		compile 'com.github.banketree.Thinkcore:thinkUtils:1.3.1'
 	}
 
