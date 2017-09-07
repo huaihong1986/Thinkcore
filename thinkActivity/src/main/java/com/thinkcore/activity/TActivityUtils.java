@@ -51,13 +51,13 @@ public class TActivityUtils {
 
     // 跳转到Activity
     public static void jumpToActivity(Context context,
-                                      Class<? extends Activity> targetClass) {
+                                      Class<?> targetClass) {
         Intent datatIntent = new Intent(context, targetClass);
         context.startActivity(datatIntent);
     }
 
     public static void jumpToActivity(Context context,
-                                      Class<? extends Activity> targetClass, Bundle bundle) {
+                                      Class<?> targetClass, Bundle bundle) {
         Intent datatIntent = new Intent(context, targetClass);
         if (bundle != null)
             datatIntent.putExtras(bundle);
@@ -66,7 +66,7 @@ public class TActivityUtils {
 
     // 跳转到Activity
     public static void jumpPostToActivity(final Context context,
-                                          final Class<? extends Activity> targetClass, final int second) {
+                                          final Class<?> targetClass, final int second) {
         new AsyncTask<Integer, Integer, String>() {
             @Override
             protected String doInBackground(Integer... integers) {
@@ -89,7 +89,7 @@ public class TActivityUtils {
     }
 
     public static void jumpPostToActivity(final Context context,
-                                          final Class<? extends Activity> targetClass, final Bundle bundle, final int second) {
+                                          final Class<?> targetClass, final Bundle bundle, final int second) {
         new AsyncTask<Integer, Integer, String>() {
             @Override
             protected String doInBackground(Integer... integers) {
@@ -115,14 +115,14 @@ public class TActivityUtils {
 
     // 跳转到Activity
     public static void jumpToNewActivity(Context context,
-                                         Class<? extends Activity> targetClass) {
+                                         Class<?> targetClass) {
         Intent datatIntent = new Intent(context, targetClass);
         datatIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(datatIntent);
     }
 
     public static void jumpToNewActivity(Context context,
-                                         Class<? extends Activity> targetClass, final Bundle bundle) {
+                                         Class<?> targetClass, final Bundle bundle) {
         Intent datatIntent = new Intent(context, targetClass);
         datatIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (bundle != null)
@@ -131,12 +131,12 @@ public class TActivityUtils {
     }
 
     public static void jumpToNewTopActivity(Context context,
-                                            Class<? extends Activity> targetClass) {
+                                            Class<?> targetClass) {
         jumpToNewTopActivity(context, targetClass, null);
     }
 
     public static void jumpToNewTopActivity(Context context,
-                                            Class<? extends Activity> targetClass, final Bundle bundle) {
+                                            Class<?> targetClass, final Bundle bundle) {
         Intent datatIntent = new Intent(context, targetClass);
         datatIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -146,7 +146,7 @@ public class TActivityUtils {
     }
 
     public static void jumpPostToNewActivity(final Context context,
-                                             final Class<? extends Activity> targetClass, final int second) {
+                                             final Class<?> targetClass, final int second) {
         new AsyncTask<Integer, Integer, String>() {
             @Override
             protected String doInBackground(Integer... integers) {
@@ -168,7 +168,7 @@ public class TActivityUtils {
     }
 
     public static void jumpPostToNewActivity(final Context context,
-                                             final Class<? extends Activity> targetClass, final Bundle bundle, final int second) {
+                                             final Class<?> targetClass, final Bundle bundle, final int second) {
         new AsyncTask<Integer, Integer, String>() {
             @Override
             protected String doInBackground(Integer... integers) {
@@ -190,7 +190,7 @@ public class TActivityUtils {
     }
 
     public static void jumpPostToNewTopActivity(final Context context,
-                                                final Class<? extends Activity> targetClass, final int second) {
+                                                final Class<?> targetClass, final int second) {
         new AsyncTask<Integer, Integer, String>() {
             @Override
             protected String doInBackground(Integer... integers) {
@@ -211,7 +211,7 @@ public class TActivityUtils {
     }
 
     public static void jumpPostToNewTopActivity(final Context context,
-                                                final Class<? extends Activity> targetClass, final Bundle bundle, final int second) {
+                                                final Class<?> targetClass, final Bundle bundle, final int second) {
         new AsyncTask<Integer, Integer, String>() {
             @Override
             protected String doInBackground(Integer... integers) {
@@ -233,7 +233,7 @@ public class TActivityUtils {
 
     // 跳转到Activity
     public static void jumpToActivityForResult(TActivity activity,
-                                               Class<? extends Activity> targetClass, IActivityResult iActivityResult) {
+                                               Class<?> targetClass, IActivityResult iActivityResult) {
         if (iActivityResult == null)
             return;
         Random random = new Random();
@@ -243,12 +243,12 @@ public class TActivityUtils {
     }
 
     public static void jumpToActivityForResult(TAppActivity activity,
-                                               Class<? extends Activity> targetClass, IActivityResult iActivityResult) {
+                                               Class<?> targetClass, IActivityResult iActivityResult) {
         jumpToActivityForResult(activity, targetClass, null, iActivityResult);
     }
 
     public static void jumpToActivityForResult(TAppActivity activity,
-                                               Class<? extends Activity> targetClass, final Bundle bundle, IActivityResult iActivityResult) {
+                                               Class<?> targetClass, final Bundle bundle, IActivityResult iActivityResult) {
         if (iActivityResult == null)
             return;
         Random random = new Random();
@@ -258,12 +258,12 @@ public class TActivityUtils {
     }
 
     public static void jumpToActivityForResult(Activity activity,
-                                               Class<? extends Activity> targetClass, int resultId) {
+                                               Class<?> targetClass, int resultId) {
         jumpToActivityForResult(activity, targetClass, null, resultId);
     }
 
     public static void jumpToActivityForResult(Activity activity,
-                                               Class<? extends Activity> targetClass, final Bundle bundle, int resultId) {
+                                               Class<?> targetClass, final Bundle bundle, int resultId) {
         Intent datatIntent = new Intent(activity, targetClass);
         if (bundle != null)
             datatIntent.putExtras(bundle);
