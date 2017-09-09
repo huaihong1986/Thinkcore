@@ -52,8 +52,7 @@ public class TActivityUtils {
     // 跳转到Activity
     public static void jumpToActivity(Context context,
                                       Class<?> targetClass) {
-        Intent datatIntent = new Intent(context, targetClass);
-        context.startActivity(datatIntent);
+        jumpToActivity(context, new Intent(context, targetClass));
     }
 
     public static void jumpToActivity(Context context,
@@ -234,27 +233,17 @@ public class TActivityUtils {
     // 跳转到Activity
     public static void jumpToActivityForResult(TActivity activity,
                                                Class<?> targetClass, IActivityResult iActivityResult) {
+        jumpToActivityForResult(activity, new Intent(activity, targetClass), iActivityResult);
+    }
+
+    public static void jumpToActivityForResult(TActivity activity,
+                                               Intent targetIntent, IActivityResult iActivityResult) {
         if (iActivityResult == null)
             return;
         Random random = new Random();
         int resultId = random.nextInt(10000);
         activity.getIActivityResult().put(resultId, iActivityResult);
-        jumpToActivityForResult(activity, targetClass, resultId);
-    }
-
-    public static void jumpToActivityForResult(TAppActivity activity,
-                                               Class<?> targetClass, IActivityResult iActivityResult) {
-        jumpToActivityForResult(activity, targetClass, null, iActivityResult);
-    }
-
-    public static void jumpToActivityForResult(TAppActivity activity,
-                                               Class<?> targetClass, final Bundle bundle, IActivityResult iActivityResult) {
-        if (iActivityResult == null)
-            return;
-        Random random = new Random();
-        int resultId = random.nextInt(10000);
-        activity.getIActivityResult().put(resultId, iActivityResult);
-        jumpToActivityForResult(activity, targetClass, bundle, resultId);
+        jumpToActivityForResult(activity, targetIntent, resultId);
     }
 
     public static void jumpToActivityForResult(Activity activity,
@@ -264,10 +253,48 @@ public class TActivityUtils {
 
     public static void jumpToActivityForResult(Activity activity,
                                                Class<?> targetClass, final Bundle bundle, int resultId) {
-        Intent datatIntent = new Intent(activity, targetClass);
+        jumpToActivityForResult(activity, new Intent(activity, targetClass), bundle, resultId);
+    }
+
+    public static void jumpToActivityForResult(Activity activity,
+                                               Intent targetIntent, final Bundle bundle, int resultId) {
         if (bundle != null)
-            datatIntent.putExtras(bundle);
-        activity.startActivityForResult(datatIntent, resultId);
+            targetIntent.putExtras(bundle);
+        jumpToActivityForResult(activity, targetIntent, resultId);
+    }
+
+    public static void jumpToActivityForResult(Activity activity,
+                                               Intent targetIntent, int resultId) {
+        activity.startActivityForResult(targetIntent, resultId);
+    }
+
+
+    //TAppActivity
+    public static void jumpToActivityForResult(TAppActivity activity,
+                                               Class<?> targetClass, IActivityResult iActivityResult) {
+        jumpToActivityForResult(activity, targetClass, null, iActivityResult);
+    }
+
+    public static void jumpToActivityForResult(TAppActivity activity,
+                                               Class<?> targetClass, final Bundle bundle, IActivityResult iActivityResult) {
+        jumpToActivityForResult(activity, new Intent(activity, targetClass), bundle, iActivityResult);
+    }
+
+    public static void jumpToActivityForResult(TAppActivity activity,
+                                               Intent targetIntent, IActivityResult iActivityResult) {
+        jumpToActivityForResult(activity, targetIntent, null, iActivityResult);
+    }
+
+    public static void jumpToActivityForResult(TAppActivity activity,
+                                               Intent targetIntent, final Bundle bundle, IActivityResult iActivityResult) {
+        if (iActivityResult == null)
+            return;
+        Random random = new Random();
+        int resultId = random.nextInt(10000);
+        activity.getIActivityResult().put(resultId, iActivityResult);
+        if (bundle != null)
+            targetIntent.putExtras(bundle);
+        jumpToActivityForResult(activity, targetIntent, resultId);
     }
 
 
