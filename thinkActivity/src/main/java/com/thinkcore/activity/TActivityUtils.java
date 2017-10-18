@@ -238,11 +238,11 @@ public class TActivityUtils {
 
     public static void jumpToActivityForResult(TActivity activity,
                                                Intent targetIntent, IActivityResult iActivityResult) {
-        if (iActivityResult == null)
-            return;
         Random random = new Random();
         int resultId = random.nextInt(10000);
-        activity.getIActivityResult().put(resultId, iActivityResult);
+        if (iActivityResult != null) {
+            activity.getIActivityResult().put(resultId, iActivityResult);
+        }
         jumpToActivityForResult(activity, targetIntent, resultId);
     }
 
@@ -287,11 +287,11 @@ public class TActivityUtils {
 
     public static void jumpToActivityForResult(TAppActivity activity,
                                                Intent targetIntent, final Bundle bundle, IActivityResult iActivityResult) {
-        if (iActivityResult == null)
-            return;
         Random random = new Random();
         int resultId = random.nextInt(10000);
-        activity.getIActivityResult().put(resultId, iActivityResult);
+        if (iActivityResult != null) {
+            activity.getIActivityResult().put(resultId, iActivityResult);
+        }
         if (bundle != null)
             targetIntent.putExtras(bundle);
         jumpToActivityForResult(activity, targetIntent, resultId);
