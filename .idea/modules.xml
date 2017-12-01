@@ -3,20 +3,34 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Thinkcore.iml" filepath="$PROJECT_DIR$/Thinkcore.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\Thinkcore.iml" filepath="F:\Android\Thinkcore\Thinkcore.iml" />
       <module fileurl="file://$PROJECT_DIR$/autolayout/autolayout.iml" filepath="$PROJECT_DIR$/autolayout/autolayout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/droidplugin/droidplugin.iml" filepath="$PROJECT_DIR$/droidplugin/droidplugin.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\autolayout\autolayout.iml" filepath="F:\Android\Thinkcore\autolayout\autolayout.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\droidplugin\droidplugin.iml" filepath="F:\Android\Thinkcore\droidplugin\droidplugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/testThinkcore/testThinkcore.iml" filepath="$PROJECT_DIR$/testThinkcore/testThinkcore.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\testThinkcore\testThinkcore.iml" filepath="F:\Android\Thinkcore\testThinkcore\testThinkcore.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinkActivity/thinkActivity.iml" filepath="$PROJECT_DIR$/thinkActivity/thinkActivity.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\thinkActivity\thinkActivity.iml" filepath="F:\Android\Thinkcore\thinkActivity\thinkActivity.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinkCache/thinkCache.iml" filepath="$PROJECT_DIR$/thinkCache/thinkCache.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thinkCore/thinkCore.iml" filepath="$PROJECT_DIR$/thinkCore/thinkCore.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\thinkCache\thinkCache.iml" filepath="F:\Android\Thinkcore\thinkCache\thinkCache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Thinkcore/thinkCore.iml" filepath="$PROJECT_DIR$/Thinkcore/thinkCore.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\thinkCore\thinkCore.iml" filepath="F:\Android\Thinkcore\thinkCore\thinkCore.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinkEncryption/thinkEncryption.iml" filepath="$PROJECT_DIR$/thinkEncryption/thinkEncryption.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\thinkEncryption\thinkEncryption.iml" filepath="F:\Android\Thinkcore\thinkEncryption\thinkEncryption.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinkLib/thinkLib.iml" filepath="$PROJECT_DIR$/thinkLib/thinkLib.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\thinkLib\thinkLib.iml" filepath="F:\Android\Thinkcore\thinkLib\thinkLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinkLog/thinkLog.iml" filepath="$PROJECT_DIR$/thinkLog/thinkLog.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\thinkLog\thinkLog.iml" filepath="F:\Android\Thinkcore\thinkLog\thinkLog.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinkNetwork/thinkNetwork.iml" filepath="$PROJECT_DIR$/thinkNetwork/thinkNetwork.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\thinkNetwork\thinkNetwork.iml" filepath="F:\Android\Thinkcore\thinkNetwork\thinkNetwork.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinkPreference/thinkPreference.iml" filepath="$PROJECT_DIR$/thinkPreference/thinkPreference.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\thinkPreference\thinkPreference.iml" filepath="F:\Android\Thinkcore\thinkPreference\thinkPreference.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinkStorage/thinkStorage.iml" filepath="$PROJECT_DIR$/thinkStorage/thinkStorage.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\thinkStorage\thinkStorage.iml" filepath="F:\Android\Thinkcore\thinkStorage\thinkStorage.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinkTask/thinkTask.iml" filepath="$PROJECT_DIR$/thinkTask/thinkTask.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\thinkTask\thinkTask.iml" filepath="F:\Android\Thinkcore\thinkTask\thinkTask.iml" />
       <module fileurl="file://$PROJECT_DIR$/thinkUtils/thinkUtils.iml" filepath="$PROJECT_DIR$/thinkUtils/thinkUtils.iml" />
+      <module fileurl="file://F:\Android\Thinkcore\thinkUtils\thinkUtils.iml" filepath="F:\Android\Thinkcore\thinkUtils\thinkUtils.iml" />
     </modules>
   </component>
 </project>

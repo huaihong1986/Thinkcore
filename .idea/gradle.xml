@@ -8,11 +8,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Thinkcore" />
             <option value="$PROJECT_DIR$/autolayout" />
             <option value="$PROJECT_DIR$/testThinkcore" />
             <option value="$PROJECT_DIR$/thinkActivity" />
             <option value="$PROJECT_DIR$/thinkCache" />
-            <option value="$PROJECT_DIR$/thinkCore" />
             <option value="$PROJECT_DIR$/thinkEncryption" />
             <option value="$PROJECT_DIR$/thinkLib" />
             <option value="$PROJECT_DIR$/thinkLog" />

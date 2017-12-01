@@ -400,6 +400,12 @@ public class TActivityUtils {
         activity.startActivityForResult(intent, requestCode);
     }
 
+    public static void jumpToSystemDialActivity(Context context, String number) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
     public static void jumpToSystemCallActivity(Context context, String number) {
         Intent i = new Intent();
         i.setAction(Intent.ACTION_CALL);

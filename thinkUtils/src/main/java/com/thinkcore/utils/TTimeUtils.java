@@ -477,7 +477,7 @@ public class TTimeUtils {
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         long minValue = calendar.getTimeInMillis();
 
-        calendar.add(Calendar.DAY_OF_MONTH, days - 2);
+        calendar.add(Calendar.DAY_OF_MONTH, days - 1);
         calendar.set(Calendar.HOUR_OF_DAY, 23);
         calendar.set(Calendar.MINUTE, 59);
         calendar.set(Calendar.SECOND, 59);
