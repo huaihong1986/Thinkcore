@@ -1,20 +1,17 @@
 apply plugin: 'com.android.application'
 
+
+def androidConfig = rootProject.ext.android;
+
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion androidConfig.compileSdkVersion
+    buildToolsVersion androidConfig.buildToolsVersion
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
-        applicationId "com.testcore"
-        minSdkVersion 15
-        targetSdkVersion 26
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
-//        ndk {
-//            moduleName "test"         //生成的so名字
-//            abiFilters "armeabi", "armeabi-v7a", "x86"  //输出指定三种abi体系结构下的so库。目前可有可无。
-//        }
     }
     //签名
 //    signingConfigs {
@@ -62,7 +59,7 @@ android {
 //        preDexLibraries = false //禁用预编译
 //    }
 
-    packagingOptions{
+    packagingOptions {
         exclude 'META-INF/rxjava.properties'
     }
 }

@@ -3,18 +3,22 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 group = 'com.github.banketree'
 
+
+def androidConfig = rootProject.ext.android;
+
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    compileSdkVersion androidConfig.compileSdkVersion
+    buildToolsVersion androidConfig.buildToolsVersion
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
         versionCode 1
-        versionName "1.0.2017.0717001"
+        versionName "1.0"
         multiDexEnabled true
     }
+
     buildTypes {
         release {
             minifyEnabled false

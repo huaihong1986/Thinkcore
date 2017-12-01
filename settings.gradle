@@ -1,1 +1,1 @@
-include ':testThinkcore', ':thinkCore', ':thinkLib', ':thinkActivity', ':thinkCache', ':thinkStorage', ':thinkEncryption', ':thinkLog', ':thinkPreference', ':thinkNetwork', ':thinkTask', ':thinkUtils', ':autolayout'
+include ':testThinkcore', ':thinkCore', ':thinkLib', ':thinkActivity', ':thinkCache', ':thinkStorage', ':thinkEncryption', ':thinkLog', ':thinkPreference', ':thinkNetwork', ':thinkTask', ':thinkUtils', ':autolayout', ':thinkDialog', ':thinkImage'
